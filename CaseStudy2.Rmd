@@ -1,0 +1,30 @@
+---
+title: "MSDS 6306 - Case Study 2"
+author: "R People: Jonathan Flores, Melissa Luzardo, Randy Park"
+date: "March 23rd, 2018"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+## Source Documents
+
+``` {r echo=TRUE, comment=NA, results='asis'}
+
+## Reading from CaseStudy2-data.xlsx. The Excel file is on local
+library(readxl)
+case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
+str(case_data)
+
+```
+
+
+``` {r echo=TRUE, results='asis'}
+## Displaying the first rows of case_data for quick glance
+
+
+library(knitr)
+knitr::kable(head(case_data))
+
+
+```
