@@ -205,12 +205,24 @@ Max. :15.000 Max. :14.000
 
 ``` r
 ## Quick glance at attrition data by department
-attrition_by_dept <- case_data %>% select(Attrition, Department) %>% group_by(Department) %>% arrange(Department) %>% table()
+att_by_dept_tbl <- case_data %>% select(Attrition, Department) %>% group_by(Department) %>% arrange(Department) %>% table()
 
-knitr::kable(attrition_by_dept)
+knitr::kable(att_by_dept_tbl)
 ```
 
 |     |  Human Resources|  Research & Development|  Sales|
 |-----|----------------:|-----------------------:|------:|
 | No  |               51|                     828|    354|
 | Yes |               12|                     133|     92|
+
+``` r
+att_by_dept <- data.frame(att_by_dept_tbl)
+ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition)) + 
+    geom_bar(stat = "identity") + 
+    ggtitle('Attrition by Department') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Department') + 
+    ylab('Attrition')
+```
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-1.png)
