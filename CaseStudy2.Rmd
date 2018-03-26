@@ -20,4 +20,7 @@ case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
 
 summary(case_data)
 
+attrition_data <- case_data[which(case_data$Attrition == 'Yes'), ]
+summary(attrition_data)
+
 ```
