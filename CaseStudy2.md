@@ -5,6 +5,24 @@ Source Documents
 ## Reading from CaseStudy2-data.xlsx. The Excel file is on local
 library("readxl")
 library("tidyr")
+library("devtools")
+library("ggplot2")
+library("dplyr")
+```
+
+
+    Attaching package: 'dplyr'
+
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
+
+``` r
+library("knitr")
 
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
@@ -97,6 +115,8 @@ Mean : 2.188 Mean : 4.123
 Max. :15.000 Max. :17.000
 
 ``` r
+## Quick glance at attrition data
+
 attrition_data <- case_data[which(case_data$Attrition == 'Yes'), ]
 summary(attrition_data)
 ```
@@ -182,3 +202,15 @@ Median : 1.000 Median : 2.000
 Mean : 1.945 Mean : 2.852  
 3rd Qu.: 2.000 3rd Qu.: 5.000  
 Max. :15.000 Max. :14.000
+
+``` r
+## Quick glance at attrition data by department
+attrition_by_dept <- case_data %>% select(Attrition, Department) %>% group_by(Department) %>% arrange(Department) %>% table()
+
+knitr::kable(attrition_by_dept)
+```
+
+|     |  Human Resources|  Research & Development|  Sales|
+|-----|----------------:|-----------------------:|------:|
+| No  |               51|                     828|    354|
+| Yes |               12|                     133|     92|
