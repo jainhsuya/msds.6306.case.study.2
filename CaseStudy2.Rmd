@@ -18,17 +18,6 @@ case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
 case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
 
-str(case_data)
-
-```
-
-
-``` {r echo=TRUE, results='asis'}
-## Displaying the first rows of case_data for quick glance
-
-
-library(knitr)
-knitr::kable(head(case_data))
-
+summary(case_data)
 
 ```
