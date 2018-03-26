@@ -3,7 +3,9 @@ Source Documents
 
 ``` r
 ## Reading from CaseStudy2-data.xlsx. The Excel file is on local
-library(readxl)
+library("readxl")
+library("tidyr")
+
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
