@@ -23,7 +23,12 @@ library("dplyr")
 
 ``` r
 library("knitr")
+library("caret")
+```
 
+    Loading required package: lattice
+
+``` r
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
@@ -216,6 +221,7 @@ knitr::kable(att_by_dept_tbl)
 | Yes |               12|                     133|     92|
 
 ``` r
+## attrition by department
 att_by_dept <- data.frame(att_by_dept_tbl)
 ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition)) + 
     geom_bar(stat = "identity") + 
@@ -226,3 +232,10 @@ ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition))
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-1.png)
+
+``` r
+## attrition with Age and Years at Company
+featurePlot(x = case_data[, c('Age', 'YearsAtCompany')], y = case_data$Attrition, plot = "density", auto.key = list(columns = 2))
+```
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-2.png)
