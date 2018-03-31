@@ -4,11 +4,16 @@ author: "R People: Jonathan Flores, Melissa Luzardo, Randy Park"
 date: "March 23rd, 2018"
 output: 
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 ## Prepare Data & Libraries and Factorize columns for analysis
 ``` {r echo=TRUE, comment=NA, results='asis'}
+
+##
+#  md_document:
+#    variant: markdown_github
+##
 
 ## Reading from CaseStudy2-data.xlsx. The Excel file is on local
 library("readxl")
@@ -19,17 +24,31 @@ library("dplyr")
 library("knitr")
 library("caret")
 library("scales")
+library("purrr")
+require(gridExtra)
 
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
 case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
 
-## Glance at attrition data
+## Prepare attrition data
 
 attrition_data <- case_data[which(case_data$Attrition == 'Yes'), ]
+```
+
+## Univariate 1 - attrition by looking with salary
+``` {r echo=TRUE, comment=NA, results='asis'}
+uni_1_cols <- c("HourlyRate", "DailyRate", "MonthlyIncome", "MonthlyRate", "PercentSalaryHike")
+attrition_data[uni_1_cols] %>%
+ gather() %>%     
+ ggplot(aes(x = value)) +                     
+ facet_wrap(~ key, scales = "free") +  
+ geom_histogram(fill = "darkgreen")
+```
 
 ## Quick glance at attrition data by department
+``` {r echo=TRUE, comment=NA, results='asis'}
 att_by_dept_tbl <- case_data %>% select(Attrition, Department) %>% group_by(Department) %>% arrange(Department) %>% table()
 
 knitr::kable(att_by_dept_tbl)
