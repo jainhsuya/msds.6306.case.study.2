@@ -7,8 +7,7 @@ output:
     variant: markdown_github
 ---
 
-## Source Documents
-
+## Prepare Data & Libraries and Factorize columns for analysis
 ``` {r echo=TRUE, comment=NA, results='asis'}
 
 ## Reading from CaseStudy2-data.xlsx. The Excel file is on local
@@ -26,7 +25,7 @@ case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
 case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
 
-## Quick glance at attrition data
+## Glance at attrition data
 
 attrition_data <- case_data[which(case_data$Attrition == 'Yes'), ]
 
@@ -34,8 +33,10 @@ attrition_data <- case_data[which(case_data$Attrition == 'Yes'), ]
 att_by_dept_tbl <- case_data %>% select(Attrition, Department) %>% group_by(Department) %>% arrange(Department) %>% table()
 
 knitr::kable(att_by_dept_tbl)
+```
 
-# Univariate 1 - attrition by department
+## Univariate 1 - attrition by department
+``` {r echo=TRUE, comment=NA, results='asis'}
 att_by_dept <- data.frame(att_by_dept_tbl)
 ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition)) + 
     geom_bar(stat = "identity") + 
@@ -43,12 +44,15 @@ ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition))
     theme(plot.title = element_text(hjust = 0.5)) +
     xlab('Department') + 
     ylab('Attrition')
+```
 
-
-# Univariate 2 - attrition with Age and Years at Company
+## Univariate 2 - attrition with Age and Years at Company
+``` {r echo=TRUE, comment=NA, results='asis'}
 featurePlot(x = case_data[, c('Age', 'YearsAtCompany')], y = case_data$Attrition, plot = "density", auto.key = list(columns = 2))
+```
 
-# Univariate 3.a - attrition by job role
+## Univariate 3 - attrition by job role
+``` {r echo=TRUE, comment=NA, results='asis'}
 ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
   stat_count(width = 0.5) +
   xlab("Job Role") +
@@ -56,10 +60,8 @@ ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
   labs(fill = "Attrition") +
   coord_flip()
 
-# Univariate 3.b - attrition by job role in percentage
 ggplot(case_data, aes(x = JobRole)) + 
   geom_bar(aes(fill = Attrition), position = 'fill') + 
   scale_y_continuous(labels = percent_format()) +
   coord_flip()
-
 ```
