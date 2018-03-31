@@ -179,7 +179,7 @@ unit4_plot1 <- attrition_data[uni_4_cols] %>%
 
 ``` r
 unit4_plot2 <- qplot(attrition_data$DistanceFromHome, geom="histogram")  + xlab("Distance From Home")
-multiplot(unit4_plot1, unit4_plot2, cols = 2)
+multiplot(unit4_plot1, unit4_plot2)
 ```
 
     Loading required package: grid
