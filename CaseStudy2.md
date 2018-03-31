@@ -98,7 +98,8 @@ attrition_data[uni_1_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
- geom_bar(fill = "purple")
+ geom_bar(fill="brown") +
+ theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 ```
 
     Warning: attributes are not identical across measure variables;
