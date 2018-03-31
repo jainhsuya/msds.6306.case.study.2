@@ -97,8 +97,10 @@ ggplot(case_data, aes(x = JobRole)) +
   coord_flip()
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-2.png) \#\#
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-2.png)
+
 Univariate 4 - attrition by education field
+-------------------------------------------
 
 ``` r
 ggplot(case_data, aes(x = EducationField, ..count..)) +
@@ -107,3 +109,10 @@ ggplot(case_data, aes(x = EducationField, ..count..)) +
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+Summary
+-------
+
+``` r
+## Summary section
+```

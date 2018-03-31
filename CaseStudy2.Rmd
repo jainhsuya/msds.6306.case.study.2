@@ -66,9 +66,17 @@ ggplot(case_data, aes(x = JobRole)) +
   ylab("Percentage") +
   coord_flip()
 ```
+
 ## Univariate 4 - attrition by education field
 ``` {r echo=TRUE, comment=NA, results='asis'}
 ggplot(case_data, aes(x = EducationField, ..count..)) +
   geom_bar(aes(fill = Attrition), position="fill") +
   theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
+```
+
+
+## Summary
+``` {r echo=TRUE, comment=NA, results='asis'}
+
+## Summary section
 ```
