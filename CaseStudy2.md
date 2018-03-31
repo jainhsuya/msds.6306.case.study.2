@@ -29,6 +29,8 @@ library("caret")
     Loading required package: lattice
 
 ``` r
+library("scales")
+
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
@@ -83,7 +85,6 @@ ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
 
 ``` r
 ## attrition by job role in percentage
-library('scales')
 ggplot(case_data, aes(x = JobRole)) + 
   geom_bar(aes(fill = Attrition), position = 'fill') + 
   scale_y_continuous(labels = percent_format()) +
