@@ -129,7 +129,7 @@ Univariate 4 - attrition by stress factors
 ------------------------------------------
 
 ``` r
-uni_4_cols <- c("DistanceFromHome", "WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
+uni_4_cols <- c("WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
 attrition_data[uni_4_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
@@ -142,6 +142,14 @@ attrition_data[uni_4_cols] %>%
     they will be dropped
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+``` r
+qplot(attrition_data$DistanceFromHome, geom="histogram") 
+```
+
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
 Quick glance at attrition data by department
 --------------------------------------------

@@ -71,13 +71,16 @@ attrition_data[uni_3_cols] %>%
 
 ## Univariate 4 - attrition by stress factors
 ``` {r echo=TRUE, comment=NA, results='asis'}
-uni_4_cols <- c("DistanceFromHome", "WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
+uni_4_cols <- c("WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
 attrition_data[uni_4_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
  geom_bar(fill="blue") +
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
+
+qplot(attrition_data$DistanceFromHome, geom="histogram") 
+
 ```
 
 
