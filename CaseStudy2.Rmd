@@ -117,7 +117,7 @@ unit4_plot1 <- attrition_data[uni_4_cols] %>%
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 
 unit4_plot2 <- qplot(attrition_data$DistanceFromHome, geom="histogram")  + xlab("Distance From Home")
-multiplot(unit4_plot2, plotlist=unit4_plot1, cols=3)
+multiplot(unit4_plot1, cols=3)
 
 ```
 
