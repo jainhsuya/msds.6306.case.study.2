@@ -72,11 +72,11 @@ featurePlot(x = case_data[, c('Age', 'YearsAtCompany')], y = case_data$Attrition
 ``` r
 ## attrition by job role
 ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
-stat_count(width = 0.5) +
-xlab("Job Role") +
-ylab("Count") +
-labs(fill = "Attrition") +
-coord_flip()
+  stat_count(width = 0.5) +
+  xlab("Job Role") +
+  ylab("Count") +
+  labs(fill = "Attrition") +
+  coord_flip()
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-3.png)
@@ -84,7 +84,10 @@ coord_flip()
 ``` r
 ## attrition by job role in percentage
 library('scales')
-ggplot(case_data, aes(x = JobRole)) + geom_bar(aes(fill = Attrition), position = 'fill') + scale_y_continuous(labels = percent_format())
+ggplot(case_data, aes(x = JobRole)) + 
+  geom_bar(aes(fill = Attrition), position = 'fill') + 
+  scale_y_continuous(labels = percent_format()) +
+  coord_flip()
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-4.png)
