@@ -4,7 +4,7 @@ author: "R People: Jonathan Flores, Melissa Luzardo, Randy Park"
 date: "March 23rd, 2018"
 output: 
   md_document:
-    variant: gfm
+    variant: markdown_github
 ---
 
 ## Prepare Data & Libraries and Factorize columns for analysis
