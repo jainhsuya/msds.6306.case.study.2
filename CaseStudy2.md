@@ -52,7 +52,7 @@ knitr::kable(att_by_dept_tbl)
 | Yes |               12|                     133|     92|
 
 ``` r
-## Univariate 1 - attrition by department
+# Univariate 1 - attrition by department
 att_by_dept <- data.frame(att_by_dept_tbl)
 ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition)) + 
     geom_bar(stat = "identity") + 
@@ -65,14 +65,14 @@ ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition))
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 ``` r
-## Univariate 2 - attrition with Age and Years at Company
+# Univariate 2 - attrition with Age and Years at Company
 featurePlot(x = case_data[, c('Age', 'YearsAtCompany')], y = case_data$Attrition, plot = "density", auto.key = list(columns = 2))
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-2.png)
 
 ``` r
-## Univariate 3.a - attrition by job role
+# Univariate 3.a - attrition by job role
 ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
   stat_count(width = 0.5) +
   xlab("Job Role") +
@@ -84,7 +84,7 @@ ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-1-3.png)
 
 ``` r
-## Univariate 3.b - attrition by job role in percentage
+# Univariate 3.b - attrition by job role in percentage
 ggplot(case_data, aes(x = JobRole)) + 
   geom_bar(aes(fill = Attrition), position = 'fill') + 
   scale_y_continuous(labels = percent_format()) +
