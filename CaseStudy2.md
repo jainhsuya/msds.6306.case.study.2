@@ -177,18 +177,11 @@ unit4_plot1 <- attrition_data[uni_4_cols] %>%
     they will be dropped
 
 ``` r
-unit4_plot2 <- qplot(attrition_data$DistanceFromHome, geom="histogram")  + xlab("Distance From Home")
-unit4_plots <- list(unit4_plot1, unit4_plot2)
-multiplot(unit4_plots, cols=3)
+unit4_plot2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), binwidth=1)
+multiplot(unit4_plot1, unit4_plot2, cols=3)
 ```
 
-\[\[1\]\]
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
-\[\[2\]\]
-
-    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
 Quick glance at attrition data by department
 --------------------------------------------
