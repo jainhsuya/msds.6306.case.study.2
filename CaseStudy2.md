@@ -63,6 +63,42 @@ require(gridExtra)
         combine
 
 ``` r
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  require(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
@@ -130,7 +166,7 @@ Univariate 4 - attrition by stress factors
 
 ``` r
 uni_4_cols <- c("WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
-attrition_data[uni_4_cols] %>%
+unit4_plot1 <- attrition_data[uni_4_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
@@ -141,15 +177,16 @@ attrition_data[uni_4_cols] %>%
     Warning: attributes are not identical across measure variables;
     they will be dropped
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
-
 ``` r
-qplot(attrition_data$DistanceFromHome, geom="histogram") 
+unit4_plot2 <- qplot(attrition_data$DistanceFromHome, geom="histogram")  + xlab("Distance From Home")
+multiplot(unit4_plot1, unit4_plot2, cols = 3)
 ```
+
+    Loading required package: grid
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-2.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 Quick glance at attrition data by department
 --------------------------------------------
