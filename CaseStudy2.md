@@ -165,7 +165,7 @@ Univariate 4 - attrition by stress factors
 
 ``` r
 uni_4_cols <- c("WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
-unit4_plot1 <- attrition_data[uni_4_cols] %>%
+unit4_p1 <- attrition_data[uni_4_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
@@ -177,9 +177,9 @@ unit4_plot1 <- attrition_data[uni_4_cols] %>%
     they will be dropped
 
 ``` r
-unit4_plot2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), binwidth=1)
-unit4_plots <- list(unit4_plot1, unit4_plot2)
-multiplot(unit4_plots, cols=3)
+unit4_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), binwidth=1)
+unit4_ps <- list(unit4_p1, unit4_p2)
+multiplot(unit4_ps, cols=3)
 ```
 
 \[\[1\]\]
