@@ -117,7 +117,8 @@ unit4_plot1 <- attrition_data[uni_4_cols] %>%
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 
 unit4_plot2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), binwidth=1)
-multiplot(unit4_plot1, unit4_plot2, cols=3)
+unit4_plots <- list(unit4_plot1, unit4_plot2)
+multiplot(unit4_plots, cols=3)
 
 ```
 
