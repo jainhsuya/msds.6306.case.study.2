@@ -93,7 +93,17 @@ ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
 ggplot(case_data, aes(x = JobRole)) + 
   geom_bar(aes(fill = Attrition), position = 'fill') + 
   scale_y_continuous(labels = percent_format()) +
+  ylab("Percentage") +
   coord_flip()
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-2.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-2.png) \#\#
+Univariate 4 - attrition by education field
+
+``` r
+ggplot(case_data, aes(x = EducationField, ..count..)) +
+  geom_bar(aes(fill = Attrition), position="fill") +
+  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
+```
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
