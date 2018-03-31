@@ -73,11 +73,11 @@ case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
 attrition_data <- case_data[which(case_data$Attrition == 'Yes'), ]
 ```
 
-Univariate 1 - attrition by looking with salary
------------------------------------------------
+Univariate 1 - attrition by salary and Ratings
+----------------------------------------------
 
 ``` r
-uni_1_cols <- c("HourlyRate", "DailyRate", "MonthlyIncome", "MonthlyRate", "PercentSalaryHike", "StockOptionLevel")
+uni_1_cols <- c("HourlyRate", "DailyRate", "MonthlyIncome", "MonthlyRate", "PercentSalaryHike", "StockOptionLevel", "PerformanceRating", "RelationshipSatisfaction")
 attrition_data[uni_1_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
@@ -89,12 +89,12 @@ attrition_data[uni_1_cols] %>%
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
-Univariate 2 - attrition by looking with job functions
-------------------------------------------------------
+Univariate 2 - attrition by job functions
+-----------------------------------------
 
 ``` r
-uni_1_cols <- c("Department", "JobRole", "OverTime", "BusinessTravel", "EnvironmentSatisfaction")
-attrition_data[uni_1_cols] %>%
+uni_2_cols <- c("Department", "JobRole", "BusinessTravel", "EnvironmentSatisfaction", "JobInvolvement", "JobLevel")
+attrition_data[uni_2_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
@@ -106,6 +106,42 @@ attrition_data[uni_1_cols] %>%
     they will be dropped
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-3-1.png)
+
+Univariate 3 - attrition by employee background
+-----------------------------------------------
+
+``` r
+uni_3_cols <- c("Education", "EducationField", "NumCompaniesWorked", "TotalWorkingYears", "YearsAtCompany")
+attrition_data[uni_3_cols] %>%
+ gather() %>%     
+ ggplot(aes(x = value)) +                     
+ facet_wrap(~ key, scales = "free") +  
+ geom_bar(fill="purple") +
+ theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
+```
+
+    Warning: attributes are not identical across measure variables;
+    they will be dropped
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+Univariate 4 - attrition by stress factors
+------------------------------------------
+
+``` r
+uni_4_cols <- c("DistanceFromHome", "WorkLifeBalance", "RelationshipSatisfaction", "OverTime", "TrainingTimesLastYear")
+attrition_data[uni_4_cols] %>%
+ gather() %>%     
+ ggplot(aes(x = value)) +                     
+ facet_wrap(~ key, scales = "free") +  
+ geom_bar(fill="blue") +
+ theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
+```
+
+    Warning: attributes are not identical across measure variables;
+    they will be dropped
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 Quick glance at attrition data by department
 --------------------------------------------
@@ -134,7 +170,7 @@ ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition))
     ylab('Attrition')
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 Univariate 2 - attrition with Age and Years at Company
 ------------------------------------------------------
@@ -143,7 +179,7 @@ Univariate 2 - attrition with Age and Years at Company
 featurePlot(x = case_data[, c('Age', 'YearsAtCompany')], y = case_data$Attrition, plot = "density", auto.key = list(columns = 2))
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 Univariate 3 - attrition by job role
 ------------------------------------
@@ -157,7 +193,7 @@ ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
   coord_flip()
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
 ggplot(case_data, aes(x = JobRole)) + 
@@ -167,7 +203,7 @@ ggplot(case_data, aes(x = JobRole)) +
   coord_flip()
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-2.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-9-2.png)
 
 Univariate 4 - attrition by education field
 -------------------------------------------
@@ -178,7 +214,7 @@ ggplot(case_data, aes(x = EducationField, ..count..)) +
   theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 ```
 
-![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Summary
 -------
