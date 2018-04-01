@@ -147,7 +147,7 @@ Univariate 3 - attrition by employee background
 
 ``` r
 uni_3_cols <- c("Education", "EducationField", "NumCompaniesWorked", "TotalWorkingYears", "YearsAtCompany")
-attrition_data[uni_3_cols] %>%
+unit3_p1 <- attrition_data[uni_3_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
@@ -158,7 +158,16 @@ attrition_data[uni_3_cols] %>%
     Warning: attributes are not identical across measure variables;
     they will be dropped
 
+``` r
+unit3_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = Age), fill = "blue", binwidth=1)
+unit3_ps <- list(unit3_p1, unit3_p2)
+multiplot(unit3_ps, cols=3)
+```
+
+\[\[1\]\]
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-1.png)
+\[\[2\]\]
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-2.png)
 
 Univariate 4 - attrition by stress factors
 ------------------------------------------
@@ -177,7 +186,7 @@ unit4_p1 <- attrition_data[uni_4_cols] %>%
     they will be dropped
 
 ``` r
-unit4_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), binwidth=1)
+unit4_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), fill = "blue", binwidth=1)
 unit4_ps <- list(unit4_p1, unit4_p2)
 multiplot(unit4_ps, cols=3)
 ```

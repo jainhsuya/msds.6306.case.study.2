@@ -98,12 +98,17 @@ attrition_data[uni_2_cols] %>%
 ## Univariate 3 - attrition by employee background
 ``` {r echo=TRUE, comment=NA, results='asis'}
 uni_3_cols <- c("Education", "EducationField", "NumCompaniesWorked", "TotalWorkingYears", "YearsAtCompany")
-attrition_data[uni_3_cols] %>%
+unit3_p1 <- attrition_data[uni_3_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
  geom_bar(fill="purple") +
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
+
+unit3_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = Age), fill = "blue", binwidth=1)
+unit3_ps <- list(unit3_p1, unit3_p2)
+multiplot(unit3_ps, cols=3)
+
 ```
 
 ## Univariate 4 - attrition by stress factors
@@ -116,7 +121,7 @@ unit4_p1 <- attrition_data[uni_4_cols] %>%
  geom_bar(fill="blue") +
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 
-unit4_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), binwidth=1)
+unit4_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), fill = "blue", binwidth=1)
 unit4_ps <- list(unit4_p1, unit4_p2)
 multiplot(unit4_ps, cols=3)
 
