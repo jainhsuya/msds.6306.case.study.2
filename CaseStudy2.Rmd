@@ -110,7 +110,7 @@ unit3_p2 <- attrition_data[uni_3b_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
- geom_histogram(fill = "purple")
+ geom_histogram(fill = "purple", binwidth=1)
 
 unit3_ps <- list(unit3_p1, unit3_p2)
 multiplot(unit3_ps, cols=3)
