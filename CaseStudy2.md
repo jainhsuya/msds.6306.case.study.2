@@ -159,7 +159,13 @@ unit3_p1 <- attrition_data[uni_3_cols] %>%
     they will be dropped
 
 ``` r
-unit3_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = Age), fill = "blue", binwidth=1)
+uni_3b_cols <- c("Age", "TotalWorkingYears", "YearsAtCompany")
+unit3_p2 <- attrition_data[uni_3b_cols] %>%
+ gather() %>%     
+ ggplot(aes(x = value)) +                     
+ facet_wrap(~ key, scales = "free") +  
+ geom_histogram(fill = "purple")
+
 unit3_ps <- list(unit3_p1, unit3_p2)
 multiplot(unit3_ps, cols=3)
 ```
@@ -167,6 +173,9 @@ multiplot(unit3_ps, cols=3)
 \[\[1\]\]
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-1.png)
 \[\[2\]\]
+
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-2.png)
 
 Univariate 4 - attrition by stress factors
