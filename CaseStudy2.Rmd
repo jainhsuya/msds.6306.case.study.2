@@ -97,7 +97,7 @@ attrition_data[uni_2_cols] %>%
 
 ## Univariate 3 - attrition by employee background
 ``` {r echo=TRUE, comment=NA, results='asis'}
-uni_3_cols <- c("Education", "EducationField", "NumCompaniesWorked", "TotalWorkingYears", "YearsAtCompany")
+uni_3_cols <- c("Education", "EducationField", "NumCompaniesWorked")
 unit3_p1 <- attrition_data[uni_3_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
