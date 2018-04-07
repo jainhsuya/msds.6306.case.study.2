@@ -10,23 +10,18 @@ output:
 ## Prepare Data & Libraries and Factorize columns for analysis
 ``` {r echo=TRUE, comment=NA, results='asis'}
 
-##
-#  md_document:
-#    variant: markdown_github
-##
-
 ## Reading from CaseStudy2-data.xlsx. The Excel file is on local
 library("readxl")
 library("tidyr")
 library("devtools")
 library("ggplot2")
-library("dplyr")
+suppressWarnings(suppressMessages(library("dplyr")))
 library("knitr")
 library("caret")
 library("scales")
-library("purrr")
+suppressWarnings(suppressMessages(library("purrr")))
 library("grid")
-library("gridExtra")
+suppressWarnings(suppressMessages(library("gridExtra")))
 
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   require(grid)
@@ -87,9 +82,9 @@ attrition_data[uni_1_cols] %>%
 
 Relevant Features     | Behaviour Observed 
 --------------------- | ---------------
-Monthly Income        | Less the Monthly Income, employees are far more likely to leave
+Monthly Income        | **Less** the Monthly Income, employees are **far more** likely to leave
 Percent Salary Hike   | Less the Salary increase received, employes are more likely to leave
-Performance Rating    | Less the Performance rating received, employees are far more likely to leave
+Performance Rating    | **Lower** the Performance rating received, employees are **far more** likely to leave
 Stock Option Level    | Less the stock option, employees are more likely to leave
 
 

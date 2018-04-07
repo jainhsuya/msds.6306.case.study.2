@@ -2,65 +2,19 @@ Prepare Data & Libraries and Factorize columns for analysis
 -----------------------------------------------------------
 
 ``` r
-##
-#  md_document:
-#    variant: markdown_github
-##
-
 ## Reading from CaseStudy2-data.xlsx. The Excel file is on local
 library("readxl")
 library("tidyr")
 library("devtools")
 library("ggplot2")
-library("dplyr")
-```
-
-
-    Attaching package: 'dplyr'
-
-    The following objects are masked from 'package:stats':
-
-        filter, lag
-
-    The following objects are masked from 'package:base':
-
-        intersect, setdiff, setequal, union
-
-``` r
+suppressWarnings(suppressMessages(library("dplyr")))
 library("knitr")
 library("caret")
 library("scales")
-library("purrr")
-```
-
-
-    Attaching package: 'purrr'
-
-    The following object is masked from 'package:scales':
-
-        discard
-
-    The following object is masked from 'package:caret':
-
-        lift
-
-    The following objects are masked from 'package:dplyr':
-
-        contains, order_by
-
-``` r
+suppressWarnings(suppressMessages(library("purrr")))
 library("grid")
-library("gridExtra")
-```
+suppressWarnings(suppressMessages(library("gridExtra")))
 
-
-    Attaching package: 'gridExtra'
-
-    The following object is masked from 'package:dplyr':
-
-        combine
-
-``` r
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   require(grid)
 
@@ -137,7 +91,7 @@ attrition_data[uni_1_cols] %>%
 <tbody>
 <tr class="odd">
 <td>Monthly Income</td>
-<td>Less the Monthly Income, employees are far more likely to leave</td>
+<td><strong>Less</strong> the Monthly Income, employees are <strong>far more</strong> likely to leave</td>
 </tr>
 <tr class="even">
 <td>Percent Salary Hike</td>
@@ -145,7 +99,7 @@ attrition_data[uni_1_cols] %>%
 </tr>
 <tr class="odd">
 <td>Performance Rating</td>
-<td>Less the Performance rating received, employees are far more likely to leave</td>
+<td><strong>Lower</strong> the Performance rating received, employees are <strong>far more</strong> likely to leave</td>
 </tr>
 <tr class="even">
 <td>Stock Option Level</td>
