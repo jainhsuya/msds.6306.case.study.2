@@ -123,9 +123,36 @@ attrition_data[uni_1_cols] %>%
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
-| Data set             | About Data set                                     |
-|----------------------|----------------------------------------------------|
-| CaseStudy2-data.xlsx | Employee Job role data set with employee attrition |
+<table>
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relevant Features</th>
+<th>Behaviour Observed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monthly Income</td>
+<td>Less the Monthly Income, employees are far more likely to leave</td>
+</tr>
+<tr class="even">
+<td>Percent Salary Hike</td>
+<td>Less the Salary increase received, employes are more likely to leave</td>
+</tr>
+<tr class="odd">
+<td>Performance Rating</td>
+<td>Less the Performance rating received, employees are far more likely to leave</td>
+</tr>
+<tr class="even">
+<td>Stock Option Level</td>
+<td>Less the stock option, employees are more likely to leave</td>
+</tr>
+</tbody>
+</table>
 
 Univariate 2 - attrition by job functions
 -----------------------------------------
