@@ -29,11 +29,6 @@ library("dplyr")
 ``` r
 library("knitr")
 library("caret")
-```
-
-    Loading required package: lattice
-
-``` r
 library("scales")
 library("purrr")
 ```
@@ -48,6 +43,10 @@ library("purrr")
     The following object is masked from 'package:caret':
 
         lift
+
+    The following objects are masked from 'package:dplyr':
+
+        contains, order_by
 
 ``` r
 library("grid")
@@ -124,6 +123,10 @@ attrition_data[uni_1_cols] %>%
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
+| Data set             | About Data set                                     |
+|----------------------|----------------------------------------------------|
+| CaseStudy2-data.xlsx | Employee Job role data set with employee attrition |
+
 Univariate 2 - attrition by job functions
 -----------------------------------------
 
@@ -137,8 +140,8 @@ attrition_data[uni_2_cols] %>%
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 ```
 
-    Warning: attributes are not identical across measure variables;
-    they will be dropped
+    Warning: attributes are not identical across measure variables; they will
+    be dropped
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
@@ -155,8 +158,8 @@ unit3_p1 <- attrition_data[uni_3_cols] %>%
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 ```
 
-    Warning: attributes are not identical across measure variables;
-    they will be dropped
+    Warning: attributes are not identical across measure variables; they will
+    be dropped
 
 ``` r
 uni_3b_cols <- c("Age", "TotalWorkingYears", "YearsAtCompany")
@@ -188,8 +191,8 @@ unit4_p1 <- attrition_data[uni_4_cols] %>%
  theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 ```
 
-    Warning: attributes are not identical across measure variables;
-    they will be dropped
+    Warning: attributes are not identical across measure variables; they will
+    be dropped
 
 ``` r
 unit4_p2 <- ggplot(data = attrition_data) + geom_histogram(aes(x = DistanceFromHome), fill = "blue", binwidth=1)
