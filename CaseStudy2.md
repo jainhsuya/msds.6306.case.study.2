@@ -65,12 +65,14 @@ Univariate 1 - attrition by salary and Ratings
 ----------------------------------------------
 
 ``` r
-uni_1_cols <- c("HourlyRate", "DailyRate", "MonthlyIncome", "MonthlyRate", "PercentSalaryHike", "StockOptionLevel", "PerformanceRating", "RelationshipSatisfaction")
+uni_1_cols <- c("HourlyRate", "DailyRate", "MonthlyIncome", "MonthlyRate", "PercentSalaryHike", "StockOptionLevel", "PerformanceRating")
 attrition_data[uni_1_cols] %>%
  gather() %>%     
  ggplot(aes(x = value)) +                     
  facet_wrap(~ key, scales = "free") +  
- geom_histogram(fill = "darkgreen")
+ geom_histogram(fill = "darkgreen") +
+ xlab('Attrition By') + 
+ ylab('Salary and Ratings')
 ```
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
