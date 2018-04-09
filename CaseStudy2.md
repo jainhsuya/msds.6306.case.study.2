@@ -87,53 +87,45 @@ Univariate 1 - further attrition analysis
 
 ``` r
 ggplot(case_data, aes(x = MonthlyIncome, fill=Attrition)) + 
-    geom_histogram(position="stack") +
+    geom_histogram(position="stack", bins=30) +
     ggtitle('Figure 1.1 Monthly Income') + 
     theme(plot.title = element_text(hjust = 0.5)) +
     xlab('Monthly Income') + 
     ylab('Attrition')
 ```
 
-    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 ggplot(case_data, aes(x = PercentSalaryHike, fill=Attrition)) + 
-    geom_histogram(position="stack") +
+    geom_histogram(position="stack", bins=10) +
     ggtitle('Figure 1.2 Percent Salary Hike') + 
     theme(plot.title = element_text(hjust = 0.5)) +
     xlab('Percent Salary Hike') + 
     ylab('Attrition')
 ```
 
-    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
 ``` r
 ggplot(case_data, aes(x = PerformanceRating, fill=Attrition)) + 
-    geom_histogram(position="stack") +
+    geom_histogram(position="stack", bins=10) +
     ggtitle('Figure 1.3 Performance Rating') + 
     theme(plot.title = element_text(hjust = 0.5)) +
     xlab('Performance Rating') + 
     ylab('Attrition')
 ```
 
-    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-3.png)
 
 ``` r
 ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) + 
-    geom_histogram(position="stack") +
+    geom_histogram(position="stack", bins=10) +
     ggtitle('Figure 1.4 Stock Option Level') + 
     theme(plot.title = element_text(hjust = 0.5)) +
     xlab('Stock Option Level') + 
     ylab('Attrition')
 ```
-
-    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-4.png)
 
@@ -151,7 +143,7 @@ ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) +
 <tbody>
 <tr class="odd">
 <td>Monthly Income</td>
-<td>Could be the attrition factor, but not enough to be the univariate cause</td>
+<td>Could be the attrition factor, but <strong>not</strong> an univariate cause</td>
 </tr>
 <tr class="even">
 <td>Percent Salary Hike</td>
@@ -159,7 +151,7 @@ ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) +
 </tr>
 <tr class="odd">
 <td>Performance Rating</td>
-<td>Could be the attrition factor, but not enough to be the univariate cause</td>
+<td>Could be the attrition factor, but <strong>not</strong> an univariate cause</td>
 </tr>
 <tr class="even">
 <td>Stock Option Level</td>
