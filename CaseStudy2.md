@@ -44,23 +44,97 @@ attrition_data[uni_1_cols] %>%
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-1.png)
-Relevant Features \| Behaviour Observed \| Further Compare ——————— \|
-—————————————————————————————– \| —————– Monthly Income \| **Less** the
-Monthly Income, employees are **far more** likely to leave \| Fig 1.1
-Percent Salary Hike \| Less the Salary increase received, employes are
-more likely to leave \| Fig 1.2 Performance Rating \| **Lower** the
-Performance rating received, employees are **far more** likely to leave
-\| Fig 1.3 Stock Option Level \| Less the stock option, employees are
-more likely to leave \| Fig 1.4
+Relevant Features \| Initial Observation  
+——————— \| ——————————————————————————- Monthly Income \| **Less** the
+Monthly Income, employees are **far more** likely to leave (Compare Fig
+1.1) Percent Salary Hike \| Less the Salary increase received, employes
+are more likely to leave (Compare Fig 1.2) Performance Rating \|
+**Lower** the Performance rating received, employees are **far more**
+likely to leave (Compare Fig 1.3) Stock Option Level \| Less the stock
+option, employees are more likely to leave (Compare Fig 1.4)
 
 ``` r
-ggplot(case_data, aes(x = MonthlyIncome)) + 
-  geom_bar(aes(fill = Attrition), position = 'fill') + 
-  scale_y_continuous(labels = percent_format()) +
-  ylab("Monthly Income")
+ggplot(case_data, aes(x = MonthlyIncome, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.1 Monthly Income') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Monthly Income') + 
+    ylab('Attrition')
 ```
 
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+``` r
+ggplot(case_data, aes(x = PercentSalaryHike, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.2 Percent Salary Hike') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Percent Salary Hike') + 
+    ylab('Attrition')
+```
+
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-2.png)
+
+``` r
+ggplot(case_data, aes(x = PerformanceRating, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.3 Performance Rating') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Performance Rating') + 
+    ylab('Attrition')
+```
+
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-3.png)
+
+``` r
+ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.4 Stock Option Level') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Stock Option Level') + 
+    ylab('Attrition')
+```
+
+    `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-5-4.png)
+
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relevant Features</th>
+<th>Comparison Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monthly Income</td>
+<td>Could be the attrition factor, but not enough to be the univariate cause</td>
+</tr>
+<tr class="even">
+<td>Percent Salary Hike</td>
+<td>Not a factor</td>
+</tr>
+<tr class="odd">
+<td>Performance Rating</td>
+<td>Could be the attrition factor, but not enough to be the univariate cause</td>
+</tr>
+<tr class="even">
+<td>Stock Option Level</td>
+<td>Not a factor</td>
+</tr>
+</tbody>
+</table>
 
 Univariate 2 - attrition by job functions
 -----------------------------------------

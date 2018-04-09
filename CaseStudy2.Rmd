@@ -84,20 +84,55 @@ attrition_data[uni_1_cols] %>%
  ylab('Salary and Ratings')
 
 ```
-Relevant Features     | Behaviour Observed                                                                        | Further Compare
---------------------- | ----------------------------------------------------------------------------------------- | -----------------
-Monthly Income        | **Less** the Monthly Income, employees are **far more** likely to leave                   | Fig 1.1
-Percent Salary Hike   | Less the Salary increase received, employes are more likely to leave                      | Fig 1.2
-Performance Rating    | **Lower** the Performance rating received, employees are **far more** likely to leave     | Fig 1.3
-Stock Option Level    | Less the stock option, employees are more likely to leave                                 | Fig 1.4
+Relevant Features     | Initial Observation                                                                      
+--------------------- | -------------------------------------------------------------------------------
+Monthly Income        | **Less** the Monthly Income, employees are **far more** likely to leave (Compare Fig 1.1)
+Percent Salary Hike   | Less the Salary increase received, employes are more likely to leave  (Compare Fig 1.2)
+Performance Rating    | **Lower** the Performance rating received, employees are **far more** likely to leave (Compare Fig 1.3)
+Stock Option Level    | Less the stock option, employees are more likely to leave (Compare Fig 1.4)
+
 
 ``` {r echo=TRUE, comment=NA, results='asis'}
-ggplot(case_data, aes(x = MonthlyIncome)) + 
-  geom_bar(aes(fill = Attrition), position = 'fill') + 
-  scale_y_continuous(labels = percent_format()) +
-  ylab("Monthly Income")
+ggplot(case_data, aes(x = MonthlyIncome, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.1 Monthly Income') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Monthly Income') + 
+    ylab('Attrition')
+
+
+ggplot(case_data, aes(x = PercentSalaryHike, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.2 Percent Salary Hike') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Percent Salary Hike') + 
+    ylab('Attrition')
+
+
+ggplot(case_data, aes(x = PerformanceRating, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.3 Performance Rating') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Performance Rating') + 
+    ylab('Attrition')
+
+
+ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) + 
+    geom_histogram(position="stack") +
+    ggtitle('Figure 1.4 Stock Option Level') + 
+    theme(plot.title = element_text(hjust = 0.5)) +
+    xlab('Stock Option Level') + 
+    ylab('Attrition')
 
 ```
+
+Relevant Features     | Comparison Observation                                                                      
+--------------------- | -------------------------------------------------------------------------------
+Monthly Income        | Could be the attrition factor, but not enough to be the univariate cause
+Percent Salary Hike   | Not a factor
+Performance Rating    | Could be the attrition factor, but not enough to be the univariate cause
+Stock Option Level    | Not a factor
+
 
 ## Univariate 2 - attrition by job functions
 ``` {r echo=TRUE, comment=NA, results='asis'}
