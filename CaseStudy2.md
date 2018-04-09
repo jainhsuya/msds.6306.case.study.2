@@ -44,15 +44,43 @@ attrition_data[uni_1_cols] %>%
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-1.png)
-Relevant Features \| Initial Observation  
-——————— \| ——————————————————————————————————- Monthly Income \|
-**Less** the Monthly Income, employees are **far more** likely to leave
-(Compare Fig 1.1) Percent Salary Hike \| Less the Salary increase
-received, employes are more likely to leave (Compare Fig 1.2)
-Performance Rating \| **Lower** the Performance rating received,
-employees are **far more** likely to leave (Compare Fig 1.3) Stock
-Option Level \| Less the stock option, employees are more likely to
-leave (Compare Fig 1.4)
+
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 75%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relevant Features</th>
+<th>Initial Observation</th>
+<th>Compare</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monthly Income</td>
+<td><strong>Less</strong> the Monthly Income, employees are <strong>far more</strong> likely to leave</td>
+<td>Fig 1.1</td>
+</tr>
+<tr class="even">
+<td>Percent Salary Hike</td>
+<td>Less the Salary increase received, employes are more likely to leave</td>
+<td>Fig 1.2</td>
+</tr>
+<tr class="odd">
+<td>Performance Rating</td>
+<td><strong>Lower</strong> the Performance rating received, employees are <strong>far more</strong> likely to leave</td>
+<td>Fig 1.3</td>
+</tr>
+<tr class="even">
+<td>Stock Option Level</td>
+<td>Less the stock option, employees are more likely to leave</td>
+<td>Fig 1.4</td>
+</tr>
+</tbody>
+</table>
 
 Univariate 1 - further attrition analysis
 -----------------------------------------
