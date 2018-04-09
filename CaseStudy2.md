@@ -45,13 +45,17 @@ attrition_data[uni_1_cols] %>%
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-4-1.png)
 Relevant Features \| Initial Observation  
-——————— \| ——————————————————————————- Monthly Income \| **Less** the
-Monthly Income, employees are **far more** likely to leave (Compare Fig
-1.1) Percent Salary Hike \| Less the Salary increase received, employes
-are more likely to leave (Compare Fig 1.2) Performance Rating \|
-**Lower** the Performance rating received, employees are **far more**
-likely to leave (Compare Fig 1.3) Stock Option Level \| Less the stock
-option, employees are more likely to leave (Compare Fig 1.4)
+——————— \| ——————————————————————————————————- Monthly Income \|
+**Less** the Monthly Income, employees are **far more** likely to leave
+(Compare Fig 1.1) Percent Salary Hike \| Less the Salary increase
+received, employes are more likely to leave (Compare Fig 1.2)
+Performance Rating \| **Lower** the Performance rating received,
+employees are **far more** likely to leave (Compare Fig 1.3) Stock
+Option Level \| Less the stock option, employees are more likely to
+leave (Compare Fig 1.4)
+
+Univariate 1 - further attrition analysis
+-----------------------------------------
 
 ``` r
 ggplot(case_data, aes(x = MonthlyIncome, fill=Attrition)) + 
