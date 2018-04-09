@@ -23,6 +23,8 @@ suppressWarnings(suppressMessages(library("purrr")))
 library("grid")
 suppressWarnings(suppressMessages(library("gridExtra")))
 
+```
+``` {r echo=FALSE, comment=NA, results='asis'}
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   require(grid)
 
@@ -58,7 +60,8 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     }
   }
 }
-
+```
+``` {r echo=TRUE, comment=NA, results='asis'}
 case_data <- data.frame(read_excel("data/CaseStudy2-data.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
@@ -79,16 +82,22 @@ attrition_data[uni_1_cols] %>%
  geom_histogram(fill = "darkgreen") +
  xlab('Attrition By') + 
  ylab('Salary and Ratings')
+
 ```
+Relevant Features     | Behaviour Observed                                                                        | Further Compare
+--------------------- | ----------------------------------------------------------------------------------------- | -----------------
+Monthly Income        | **Less** the Monthly Income, employees are **far more** likely to leave                   | Fig 1.1
+Percent Salary Hike   | Less the Salary increase received, employes are more likely to leave                      | Fig 1.2
+Performance Rating    | **Lower** the Performance rating received, employees are **far more** likely to leave     | Fig 1.3
+Stock Option Level    | Less the stock option, employees are more likely to leave                                 | Fig 1.4
 
-Relevant Features     | Behaviour Observed 
---------------------- | ---------------
-Monthly Income        | **Less** the Monthly Income, employees are **far more** likely to leave
-Percent Salary Hike   | Less the Salary increase received, employes are more likely to leave
-Performance Rating    | **Lower** the Performance rating received, employees are **far more** likely to leave
-Stock Option Level    | Less the stock option, employees are more likely to leave
+``` {r echo=TRUE, comment=NA, results='asis'}
+ggplot(case_data, aes(x = MonthlyIncome)) + 
+  geom_bar(aes(fill = Attrition), position = 'fill') + 
+  scale_y_continuous(labels = percent_format()) +
+  ylab("Monthly Income")
 
-
+```
 
 ## Univariate 2 - attrition by job functions
 ``` {r echo=TRUE, comment=NA, results='asis'}
