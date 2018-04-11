@@ -22,18 +22,15 @@ To conduct exploratory data analysis (EDA), the data science team was provided w
 ```r
 #load requeried library
 library("readxl")
-```
-
-```
-Warning: package 'readxl' was built under R version 3.4.4
-```
-
-```r
 require(RCurl)
 ```
 
 ```
 Loading required package: RCurl
+```
+
+```
+Warning: package 'RCurl' was built under R version 3.3.3
 ```
 
 ```
@@ -84,6 +81,12 @@ library(dplyr)
 ```
 ## 
 ## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:purrr':
+## 
+##     contains, order_by
 ```
 
 ```
@@ -158,17 +161,7 @@ knitr::kable(head(SortAtt,10))
 ```r
 # Load library to visualize correlations
 library(corrplot)
-```
 
-```
-## Warning: package 'corrplot' was built under R version 3.4.4
-```
-
-```
-## corrplot 0.84 loaded
-```
-
-```r
 #Display graphic with all correlations
 par(cex=.5)
 corrplot(as.matrix(Attcor), method="color", 
@@ -365,7 +358,7 @@ LM$RelationshipSatisfaction <- as.factor(LM$RelationshipSatisfaction)
 LM$WorkLifeBalance <- as.factor(LM$WorkLifeBalance)
 
 ## Creating a Training and Testing data set from sampling as a random 80% of the data set provided
-smp<-floor(0.9*nrow(LM))
+smp<-floor(0.8*nrow(LM))
 set.seed(123)
 ind <- sample(seq_len(nrow(LM)),size=smp)
 train <- LM[ind,]
@@ -380,305 +373,154 @@ Start with a preliminary model with all the variables
 ## Load requiered libraries
 
 library(psych)
-```
-
-```
-Warning: package 'psych' was built under R version 3.4.4
-```
-
-```r
 library(DT)
-```
-
-```
-Warning: package 'DT' was built under R version 3.4.4
-```
-
-```r
 library(pander)
-```
 
-```
-Warning: package 'pander' was built under R version 3.4.4
-```
-
-```r
 #Logistic Regression
 model <- glm(Attrition ~ ., family = 'binomial', data = train)
 pander(summary(model))
 ```
 
 
---------------------------------------------------------------------------
-               &nbsp;                   Estimate    Std. Error   z value  
-------------------------------------- ------------ ------------ ----------
-           **(Intercept)**               -11.75       657.4      -0.01787 
+----------------------------------------------------------------------------------
+               &nbsp;                  Estimate   Std. Error   z value   Pr(>|z|) 
+------------------------------------- ---------- ------------ --------- ----------
+               **Age**                 -0.02016    0.01564     -1.289     0.1975  
 
-               **Age**                  -0.02799     0.01492      -1.877  
+   **BusinessTravelTravel_Rarely**      2.156       0.5042      4.277   1.895e-05 
 
-   **BusinessTravelTravel_Rarely**       2.062        0.4638      4.447   
+ **BusinessTravelTravel_Frequently**    1.367       0.4659      2.935    0.003339 
 
- **BusinessTravelTravel_Frequently**     1.209        0.4274      2.829   
+            **DailyRate**             -0.0004421  0.0002586    -1.709    0.08743  
 
-            **DailyRate**              -0.0003337   0.0002423     -1.377  
+       **DepartmentResearch &           13.55       651.5      0.02081    0.9834  
+            Development**                                                         
 
-       **DepartmentResearch &            13.58        657.4      0.02066  
-            Development**                                                 
+         **DepartmentSales**             13.3       651.5      0.02041    0.9837  
 
-         **DepartmentSales**              13.2        657.4      0.02008  
+        **DistanceFromHome**           0.05312     0.01229      4.324   1.535e-05 
 
-        **DistanceFromHome**            0.05529      0.01171      4.723   
+           **Education2**              -0.1313      0.3738     -0.3513    0.7254  
 
-           **Education2**                0.106        0.3502      0.3025  
+           **Education3**             -0.004705     0.3271    -0.01438    0.9885  
 
-           **Education3**                0.1081        0.31       0.3487  
+           **Education4**              0.05363      0.3624      0.148     0.8824  
 
-           **Education4**                0.1473       0.342       0.4307  
+           **Education5**               -0.343      0.7611     -0.4506    0.6523  
 
-           **Education5**               -0.7129       0.7575     -0.9411  
+        **EducationFieldLife            -1.54       0.9563      -1.61     0.1074  
+             Sciences**                                                           
 
-        **EducationFieldLife             -1.089       0.888       -1.227  
-             Sciences**                                                   
+     **EducationFieldMarketing**        -1.063      1.013      -1.049     0.2941  
 
-     **EducationFieldMarketing**         -0.397       0.9422     -0.4214  
+      **EducationFieldMedical**         -1.389      0.9543     -1.455     0.1457  
 
-      **EducationFieldMedical**         -0.9872       0.885       -1.115  
+       **EducationFieldOther**          -1.237      1.023      -1.209     0.2267  
 
-       **EducationFieldOther**           -1.08        0.9613      -1.123  
+      **EducationFieldTechnical        -0.8544      0.9727     -0.8784    0.3797  
+              Degree**                                                            
 
-      **EducationFieldTechnical         -0.2024       0.9086     -0.2228  
-              Degree**                                                    
+         **EmployeeNumber**           -0.0002972  0.0001764    -1.684    0.09209  
 
-         **EmployeeNumber**            -0.0002118   0.0001665     -1.272  
+    **EnvironmentSatisfaction2**        -1.182      0.3227     -3.662   0.0002502 
 
-    **EnvironmentSatisfaction2**          -1.2        0.3049      -3.936  
+    **EnvironmentSatisfaction3**        -1.148      0.2859     -4.013   5.995e-05 
 
-    **EnvironmentSatisfaction3**         -1.167       0.2705      -4.316  
+    **EnvironmentSatisfaction4**        -1.335      0.2888     -4.623   3.788e-06 
 
-    **EnvironmentSatisfaction4**         -1.352       0.2733      -4.947  
+           **GenderMale**               0.3252      0.2134      1.524     0.1275  
 
-           **GenderMale**                0.4234       0.2039      2.076   
+           **HourlyRate**              0.001606    0.005138    0.3125     0.7547  
 
-           **HourlyRate**               0.001549     0.004869     0.3181  
+         **JobInvolvement2**            -1.372      0.4332     -3.166    0.001547 
 
-         **JobInvolvement2**             -1.291       0.3966      -3.256  
+         **JobInvolvement3**            -1.293      0.4041     -3.199    0.00138  
 
-         **JobInvolvement3**             -1.394       0.3702      -3.766  
+         **JobInvolvement4**            -1.824      0.5338     -3.417   0.0006337 
 
-         **JobInvolvement4**             -2.132       0.5103      -4.177  
+            **JobLevel**               -0.1141      0.3649     -0.3129    0.7544  
 
-            **JobLevel**                -0.07578      0.3421     -0.2215  
+     **JobRoleHuman Resources**         14.46       651.5      0.02219    0.9823  
 
-     **JobRoleHuman Resources**          14.82        657.4      0.02255  
+         **JobRoleLaboratory            1.524       0.5504      2.769    0.005628 
+            Technician**                                                          
 
-         **JobRoleLaboratory             1.568        0.5123      3.061   
-            Technician**                                                  
+         **JobRoleManager**            -0.2101      1.088      -0.1932    0.8468  
 
-         **JobRoleManager**              0.1484       0.9581      0.1549  
+       **JobRoleManufacturing           0.2557      0.588      0.4348     0.6637  
+             Director**                                                           
 
-       **JobRoleManufacturing            0.219        0.5629      0.389   
-             Director**                                                   
+    **JobRoleResearch Director**       -0.5552      1.051      -0.5283    0.5973  
 
-    **JobRoleResearch Director**        -0.7706       1.014      -0.7596  
+    **JobRoleResearch Scientist**       0.5669      0.5608      1.011     0.3121  
 
-    **JobRoleResearch Scientist**        0.5726       0.5268      1.087   
+     **JobRoleSales Executive**         1.319       1.497      0.8812     0.3782  
 
-     **JobRoleSales Executive**          1.277        1.201       1.064   
+           **JobRoleSales               2.186       1.548       1.412     0.1579  
+          Representative**                                                        
 
-           **JobRoleSales                 2.41        1.263       1.908   
-          Representative**                                                
+        **JobSatisfaction2**           -0.4519      0.3088     -1.463     0.1433  
 
-        **JobSatisfaction2**            -0.5971       0.2948      -2.025  
+        **JobSatisfaction3**           -0.7026      0.2835     -2.478     0.0132  
 
-        **JobSatisfaction3**            -0.7368       0.265       -2.78   
+        **JobSatisfaction4**            -1.463      0.3048     -4.802    1.57e-06 
 
-        **JobSatisfaction4**             -1.397       0.2849      -4.903  
+      **MaritalStatusMarried**          0.3498      0.3105      1.127     0.2599  
 
-      **MaritalStatusMarried**           0.4147       0.2928      1.416   
+       **MaritalStatusSingle**          1.426       0.4016      3.55    0.0003845 
 
-       **MaritalStatusSingle**            1.32        0.3766      3.504   
+          **MonthlyIncome**           6.397e-05    9.45e-05    0.6769     0.4984  
 
-          **MonthlyIncome**            5.143e-05    9.026e-05     0.5698  
+           **MonthlyRate**            8.727e-06   1.449e-05    0.6022     0.547   
 
-           **MonthlyRate**             7.881e-06    1.363e-05     0.578   
+       **NumCompaniesWorked**           0.1351     0.04564      2.96     0.003075 
 
-       **NumCompaniesWorked**            0.1921      0.04186      4.589   
+           **OverTimeYes**              2.099       0.2235      9.393   5.809e-21 
 
-           **OverTimeYes**                2.14        0.2142      9.992   
+        **PercentSalaryHike**          -0.0183     0.04403     -0.4157    0.6776  
 
-        **PercentSalaryHike**           -0.02394     0.04223     -0.5669  
+       **PerformanceRating4**          0.003014     0.4661    0.006468    0.9948  
 
-       **PerformanceRating4**           0.03686       0.443      0.08322  
+    **RelationshipSatisfaction2**      -0.9431      0.3338     -2.826    0.004717 
 
-    **RelationshipSatisfaction2**        -1.004       0.3158      -3.181  
+    **RelationshipSatisfaction3**       -0.88       0.2918     -3.016    0.00256  
 
-    **RelationshipSatisfaction3**       -0.9231       0.2766      -3.337  
+    **RelationshipSatisfaction4**       -0.987      0.2945     -3.351   0.0008044 
 
-    **RelationshipSatisfaction4**        -1.059       0.2795      -3.787  
+        **StockOptionLevel**           -0.06502     0.1795     -0.3623    0.7172  
 
-        **StockOptionLevel**            -0.1941       0.1681      -1.155  
+        **TotalWorkingYears**          -0.08139    0.03453     -2.357    0.01843  
 
-        **TotalWorkingYears**           -0.0836       0.0324      -2.58   
+      **TrainingTimesLastYear**        -0.2478     0.08263     -2.999    0.002711 
 
-      **TrainingTimesLastYear**         -0.2473      0.08062      -3.068  
+        **WorkLifeBalance2**           -0.5558      0.4425     -1.256     0.2091  
 
-        **WorkLifeBalance2**            -0.5997       0.4069      -1.474  
+        **WorkLifeBalance3**            -1.209      0.4164     -2.903    0.003697 
 
-        **WorkLifeBalance3**             -1.219       0.382       -3.192  
+        **WorkLifeBalance4**           -0.6955      0.4977     -1.397     0.1623  
 
-        **WorkLifeBalance4**            -0.6353       0.4539       -1.4   
+         **YearsAtCompany**            0.07435     0.04669      1.592     0.1113  
 
-         **YearsAtCompany**             0.08745       0.0431      2.029   
+       **YearsInCurrentRole**          -0.1509     0.05563     -2.712    0.006683 
 
-       **YearsInCurrentRole**           -0.1328      0.05035      -2.638  
+     **YearsSinceLastPromotion**        0.2053     0.05154      3.984   6.763e-05 
 
-     **YearsSinceLastPromotion**         0.191       0.04669      4.091   
+      **YearsWithCurrManager**         -0.1453     0.05428     -2.678    0.007415 
 
-      **YearsWithCurrManager**          -0.1399      0.05048      -2.771  
---------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
--------------------------------------------------
-               &nbsp;                  Pr(>|z|)  
-------------------------------------- -----------
-           **(Intercept)**              0.9857   
-
-               **Age**                  0.06054  
-
-   **BusinessTravelTravel_Rarely**     8.707e-06 
-
- **BusinessTravelTravel_Frequently**   0.004668  
-
-            **DailyRate**               0.1684   
-
-       **DepartmentResearch &           0.9835   
-            Development**                        
-
-         **DepartmentSales**             0.984   
-
-        **DistanceFromHome**           2.324e-06 
-
-           **Education2**               0.7622   
-
-           **Education3**               0.7273   
-
-           **Education4**               0.6667   
-
-           **Education5**               0.3466   
-
-        **EducationFieldLife             0.22    
-             Sciences**                          
-
-     **EducationFieldMarketing**        0.6735   
-
-      **EducationFieldMedical**         0.2646   
-
-       **EducationFieldOther**          0.2613   
-
-      **EducationFieldTechnical         0.8237   
-              Degree**                           
-
-         **EmployeeNumber**             0.2035   
-
-    **EnvironmentSatisfaction2**       8.292e-05 
-
-    **EnvironmentSatisfaction3**       1.588e-05 
-
-    **EnvironmentSatisfaction4**       7.547e-07 
-
-           **GenderMale**               0.03785  
-
-           **HourlyRate**               0.7504   
-
-         **JobInvolvement2**            0.00113  
-
-         **JobInvolvement3**           0.0001656 
-
-         **JobInvolvement4**           2.948e-05 
-
-            **JobLevel**                0.8247   
-
-     **JobRoleHuman Resources**          0.982   
-
-         **JobRoleLaboratory           0.002206  
-            Technician**                         
-
-         **JobRoleManager**             0.8769   
-
-       **JobRoleManufacturing           0.6973   
-             Director**                          
-
-    **JobRoleResearch Director**        0.4475   
-
-    **JobRoleResearch Scientist**       0.2771   
-
-     **JobRoleSales Executive**         0.2875   
-
-           **JobRoleSales               0.05645  
-          Representative**                       
-
-        **JobSatisfaction2**            0.04283  
-
-        **JobSatisfaction3**           0.005431  
-
-        **JobSatisfaction4**           9.455e-07 
-
-      **MaritalStatusMarried**          0.1567   
-
-       **MaritalStatusSingle**         0.0004577 
-
-          **MonthlyIncome**             0.5688   
-
-           **MonthlyRate**              0.5633   
-
-       **NumCompaniesWorked**          4.448e-06 
-
-           **OverTimeYes**             1.656e-23 
-
-        **PercentSalaryHike**           0.5708   
-
-       **PerformanceRating4**           0.9337   
-
-    **RelationshipSatisfaction2**      0.001468  
-
-    **RelationshipSatisfaction3**      0.000847  
-
-    **RelationshipSatisfaction4**      0.0001522 
-
-        **StockOptionLevel**            0.2481   
-
-        **TotalWorkingYears**          0.009881  
-
-      **TrainingTimesLastYear**        0.002156  
-
-        **WorkLifeBalance2**            0.1405   
-
-        **WorkLifeBalance3**           0.001415  
-
-        **WorkLifeBalance4**            0.1616   
-
-         **YearsAtCompany**             0.04247  
-
-       **YearsInCurrentRole**          0.008347  
-
-     **YearsSinceLastPromotion**       4.286e-05 
-
-      **YearsWithCurrManager**         0.005595  
--------------------------------------------------
+           **(Intercept)**              -11.38      651.5     -0.01747    0.9861  
+----------------------------------------------------------------------------------
 
 
 (Dispersion parameter for  binomial  family taken to be  1 )
 
 
--------------------- -----------------------------
-   Null deviance:     1157.8  on 1322  degrees of 
-                                freedom           
+------------------ -------------------------
+  Null deviance:   1034  on 1175  degrees of
+                            freedom         
 
- Residual deviance:   735.7  on 1264  degrees of  
-                                freedom           
--------------------- -----------------------------
+Residual deviance: 664  on 1117  degrees of 
+                            freedom         
+------------------ -------------------------
 
 ## Refine model - Reduced Model
 Refine Logistic Regression Model by removing not statistically significant variables (p-value >0.05) to reduce AIC value.
@@ -692,131 +534,131 @@ model2 <- glm(Attrition ~ Age + BusinessTravel + DistanceFromHome + EnvironmentS
 cat(model2$aic)
 ```
 
-841.1039
+763.2289
 
 ```r
 pander(summary(model2))
 ```
 
 
------------------------------------------------------------------------------------
-               &nbsp;                  Estimate   Std. Error   z value   Pr(>|z|)  
-------------------------------------- ---------- ------------ --------- -----------
-           **(Intercept)**              0.4845      0.9487     0.5107     0.6096   
+----------------------------------------------------------------------------------
+               &nbsp;                  Estimate   Std. Error   z value   Pr(>|z|) 
+------------------------------------- ---------- ------------ --------- ----------
+               **Age**                 -0.04131    0.01326     -3.114    0.001844 
 
-               **Age**                 -0.04915    0.01252     -3.926    8.627e-05 
+   **BusinessTravelTravel_Rarely**      2.075       0.4875      4.256   2.083e-05 
 
-   **BusinessTravelTravel_Rarely**       1.97       0.4478      4.399    1.088e-05 
+ **BusinessTravelTravel_Frequently**     1.3        0.4522      2.875    0.004036 
 
- **BusinessTravelTravel_Frequently**    1.158       0.4146      2.793    0.005217  
+        **DistanceFromHome**           0.04841     0.01182      4.095   4.226e-05 
 
-        **DistanceFromHome**           0.05029     0.01122      4.482    7.381e-06 
+    **EnvironmentSatisfaction2**        -1.101      0.3129     -3.518   0.0004351 
 
-    **EnvironmentSatisfaction2**        -1.136      0.2928     -3.879    0.0001048 
+    **EnvironmentSatisfaction3**       -0.9925      0.2737     -3.627   0.0002872 
 
-    **EnvironmentSatisfaction3**        -1.046      0.2576     -4.061    4.889e-05 
+    **EnvironmentSatisfaction4**        -1.267      0.2811     -4.506    6.61e-06 
 
-    **EnvironmentSatisfaction4**        -1.301      0.2647     -4.914    8.92e-07  
+         **JobInvolvement2**            -1.22       0.4097     -2.977    0.002915 
 
-         **JobInvolvement2**            -1.095      0.3759     -2.914    0.003567  
+         **JobInvolvement3**            -1.223      0.3792     -3.224    0.001263 
 
-         **JobInvolvement3**            -1.28       0.3497     -3.658    0.0002537 
+         **JobInvolvement4**            -1.743      0.5119     -3.404    0.000664 
 
-         **JobInvolvement4**            -2.009      0.4867     -4.128    3.665e-05 
+     **JobRoleHuman Resources**         1.803       0.6202      2.907    0.003652 
 
-     **JobRoleHuman Resources**         1.871       0.5834      3.208    0.001338  
+         **JobRoleLaboratory            1.679       0.4815      3.488   0.0004873 
+            Technician**                                                          
 
-         **JobRoleLaboratory            1.712       0.4486      3.816    0.0001356 
-            Technician**                                                           
+         **JobRoleManager**            -0.1384      0.787      -0.1758    0.8604  
 
-         **JobRoleManager**              0.15       0.6702     0.2238     0.8229   
+       **JobRoleManufacturing           0.269       0.5773      0.466     0.6412  
+             Director**                                                           
 
-       **JobRoleManufacturing           0.2321      0.5533     0.4194     0.6749   
-             Director**                                                            
+    **JobRoleResearch Director**       -0.5145      0.9042     -0.569     0.5693  
 
-    **JobRoleResearch Director**       -0.8238      0.8721     -0.9445    0.3449   
+    **JobRoleResearch Scientist**       0.7686      0.4845      1.587     0.1126  
 
-    **JobRoleResearch Scientist**       0.7388      0.4541      1.627     0.1038   
+     **JobRoleSales Executive**         1.323       0.4728      2.798    0.005139 
 
-     **JobRoleSales Executive**         1.275       0.4418      2.887    0.003894  
+           **JobRoleSales               2.195       0.552       3.976   7.006e-05 
+          Representative**                                                        
 
-           **JobRoleSales               2.377       0.5223      4.551    5.334e-06 
-          Representative**                                                         
+        **JobSatisfaction2**           -0.4199      0.2981     -1.409     0.159   
 
-        **JobSatisfaction2**           -0.5114      0.2854     -1.792     0.07313  
+        **JobSatisfaction3**            -0.685      0.2695     -2.542    0.01102  
 
-        **JobSatisfaction3**            -0.675      0.2534     -2.663    0.007734  
+        **JobSatisfaction4**            -1.441      0.292      -4.934   8.061e-07 
 
-        **JobSatisfaction4**            -1.345      0.2744     -4.902    9.488e-07 
+      **MaritalStatusMarried**          0.3468      0.2932      1.183     0.2368  
 
-      **MaritalStatusMarried**          0.4699      0.2774      1.694     0.09024  
+       **MaritalStatusSingle**          1.456       0.3017      4.826   1.394e-06 
 
-       **MaritalStatusSingle**          1.518       0.2866      5.295    1.191e-07 
+       **NumCompaniesWorked**           0.1071     0.04299      2.492    0.01271  
 
-       **NumCompaniesWorked**           0.156      0.03903      3.996    6.434e-05 
+           **OverTimeYes**              2.002       0.2138      9.365   7.593e-21 
 
-           **OverTimeYes**              2.022       0.2041      9.907    3.865e-23 
+    **RelationshipSatisfaction2**      -0.8518      0.3194     -2.667    0.007649 
 
-    **RelationshipSatisfaction2**      -0.9077      0.3025     -3.001     0.00269  
+    **RelationshipSatisfaction3**      -0.7248      0.2781     -2.607    0.009146 
 
-    **RelationshipSatisfaction3**      -0.7546      0.2632     -2.867    0.004142  
+    **RelationshipSatisfaction4**       -0.808      0.282      -2.865    0.004164 
 
-    **RelationshipSatisfaction4**      -0.8598      0.2676     -3.213    0.001314  
+      **TrainingTimesLastYear**        -0.2507     0.08081     -3.103    0.001918 
 
-      **TrainingTimesLastYear**        -0.2477     0.07848     -3.156     0.0016   
+        **WorkLifeBalance2**           -0.5628      0.4322     -1.302     0.1929  
 
-        **WorkLifeBalance2**           -0.6561      0.3973     -1.651     0.0987   
+        **WorkLifeBalance3**            -1.111      0.4075     -2.728    0.00638  
 
-        **WorkLifeBalance3**            -1.18       0.3737     -3.157    0.001593  
+        **WorkLifeBalance4**            -0.625      0.4899     -1.276     0.202   
 
-        **WorkLifeBalance4**            -0.627      0.4467     -1.404     0.1604   
+         **YearsAtCompany**            0.02915     0.04033     0.7227     0.4699  
 
-         **YearsAtCompany**            0.03607     0.03675     0.9813     0.3264   
+       **YearsInCurrentRole**          -0.1422     0.05249      -2.71    0.006733 
 
-       **YearsInCurrentRole**           -0.12      0.04793     -2.504     0.01228  
+     **YearsSinceLastPromotion**        0.2028     0.04872      4.163   3.147e-05 
 
-     **YearsSinceLastPromotion**        0.1928     0.04429      4.354    1.336e-05 
+      **YearsWithCurrManager**         -0.1448     0.05207     -2.781    0.005414 
 
-      **YearsWithCurrManager**         -0.1411     0.04864      -2.9     0.003726  
------------------------------------------------------------------------------------
+           **(Intercept)**              0.3174      1.015      0.3126     0.7546  
+----------------------------------------------------------------------------------
 
 
 (Dispersion parameter for  binomial  family taken to be  1 )
 
 
--------------------- -----------------------------
-   Null deviance:     1157.8  on 1322  degrees of 
-                                freedom           
+------------------ ---------------------------
+  Null deviance:   1033.6  on 1175  degrees of
+                             freedom          
 
- Residual deviance:   767.1  on 1286  degrees of  
-                                freedom           
--------------------- -----------------------------
+Residual deviance: 689.2  on 1139  degrees of 
+                             freedom          
+------------------ ---------------------------
 
 ```r
 #run anova on model2
 knitr::kable(anova(model2, test = 'Chisq'))
 ```
 
-                            Df     Deviance   Resid. Df   Resid. Dev    Pr(>Chi)
--------------------------  ---  -----------  ----------  -----------  ----------
-NULL                        NA           NA        1322    1157.7789          NA
-Age                          1    32.948303        1321    1124.8306   0.0000000
-BusinessTravel               2    18.812372        1319    1106.0183   0.0000822
-DistanceFromHome             1    10.984635        1318    1095.0336   0.0009187
-EnvironmentSatisfaction      3    21.532027        1315    1073.5016   0.0000816
-JobInvolvement               3    19.214987        1312    1054.2866   0.0002468
-JobRole                      8    49.785306        1304    1004.5013   0.0000000
-JobSatisfaction              3    19.178184        1301     985.3231   0.0002512
-MaritalStatus                2    28.586346        1299     956.7368   0.0000006
-NumCompaniesWorked           1    15.340577        1298     941.3962   0.0000898
-OverTime                     1   107.072588        1297     834.3236   0.0000000
-RelationshipSatisfaction     3    10.164684        1294     824.1589   0.0172169
-TrainingTimesLastYear        1    10.257113        1293     813.9018   0.0013616
-WorkLifeBalance              3    13.883299        1290     800.0185   0.0030684
-YearsAtCompany               1     1.465684        1289     798.5528   0.2260280
-YearsInCurrentRole           1     5.518847        1288     793.0340   0.0188127
-YearsSinceLastPromotion      1    17.648174        1287     775.3858   0.0000266
-YearsWithCurrManager         1     8.281948        1286     767.1039   0.0040041
+                            Df    Deviance   Resid. Df   Resid. Dev    Pr(>Chi)
+-------------------------  ---  ----------  ----------  -----------  ----------
+NULL                        NA          NA        1175    1033.5728          NA
+Age                          1   32.370928        1174    1001.2018   0.0000000
+BusinessTravel               2   18.370335        1172     982.8315   0.0001025
+DistanceFromHome             1   12.674430        1171     970.1571   0.0003707
+EnvironmentSatisfaction      3   16.609011        1168     953.5481   0.0008504
+JobInvolvement               3   10.129088        1165     943.4190   0.0175001
+JobRole                      8   41.942777        1157     901.4762   0.0000014
+JobSatisfaction              3   20.013096        1154     881.4631   0.0001687
+MaritalStatus                2   25.251629        1152     856.2115   0.0000033
+NumCompaniesWorked           1    7.223823        1151     848.9876   0.0071942
+OverTime                     1   98.568269        1150     750.4194   0.0000000
+RelationshipSatisfaction     3    8.337437        1147     742.0819   0.0395292
+TrainingTimesLastYear        1    9.708507        1146     732.3734   0.0018342
+WorkLifeBalance              3   10.731155        1143     721.6423   0.0132721
+YearsAtCompany               1    3.517464        1142     718.1248   0.0607253
+YearsInCurrentRole           1    5.307596        1141     712.8172   0.0212326
+YearsSinceLastPromotion      1   15.995743        1140     696.8215   0.0000635
+YearsWithCurrManager         1    7.592588        1139     689.2289   0.0058609
 
 ## Evaluate top 3 parameters
 Evaluate Logistic Regression Model with top 3 statisticaly significant variables (p-value <0.05) 
@@ -830,7 +672,7 @@ model3 <- glm(Attrition ~ EnvironmentSatisfaction + MaritalStatus + OverTime , f
 cat(model3$aic)
 ```
 
-1023.072
+913.0225
 
 ## Reduced Model Evaluation
 
@@ -847,22 +689,18 @@ knitr::kable(head(comparison))
 
  Predicted  Actual    EmployeeNumber
 ----------  -------  ---------------
+         0  No                     2
+         0  No                     7
+         0  No                    10
          0  No                    20
          0  Yes                   27
          0  No                    36
-         0  Yes                   42
-         0  No                    60
-         0  No                    73
 
 ```r
 pred <- ifelse(predmodel>0.5,2,1)
 
 #Loading required libraries
 library(ROCR)
-```
-
-```
-Warning: package 'ROCR' was built under R version 3.4.4
 ```
 
 ```
@@ -885,15 +723,18 @@ library(Metrics)
 ```
 
 ```
-Warning: package 'Metrics' was built under R version 3.4.4
+
+Attaching package: 'Metrics'
+```
+
+```
+The following object is masked from 'package:MicrosoftML':
+
+    logLoss
 ```
 
 ```r
 library(pROC)
-```
-
-```
-Warning: package 'pROC' was built under R version 3.4.4
 ```
 
 ```
@@ -929,7 +770,7 @@ plot(perf)
 auc(test$Attrition,pred)
 ```
 
-Area under the curve: 0.7157
+Area under the curve: 0.698
 
 ## Prediction probabilities and results in comparison with actuals
 
@@ -942,8 +783,8 @@ colnames(comparison2) <- c("Probability Greater Than .5 is Yes and Lower than .5
 DT::datatable(comparison2,filter = 'top',options = list(pageLength = 10,autoWidth = TRUE),class = 'cell-border stripe')
 ```
 
-<!--html_preserve--><div id="htmlwidget-5bf9627d7d03a4835294" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5bf9627d7d03a4835294">{"x":{"filter":"top","filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"20\" data-max=\"2046\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147"],[0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0],[1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,2,1,2,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,2,1],[1,2,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,1,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,1,2,1,2,1,1,1,1,1,2,2,1,1,1,1,1,1,1,2,2,1,2,1,1,1,1,1,1,1,2,1,2,2,1,1,1,1,1,1],[20,27,36,42,60,73,75,102,119,128,131,148,152,175,182,197,199,204,208,214,221,233,243,254,297,303,305,311,315,343,364,367,385,410,426,438,450,463,501,507,514,534,564,569,575,585,604,606,611,614,635,641,657,663,679,702,712,714,729,763,785,786,791,812,847,885,925,939,940,944,964,966,985,1002,1005,1010,1012,1029,1036,1050,1066,1079,1094,1113,1133,1158,1161,1204,1210,1216,1217,1238,1264,1270,1297,1301,1306,1312,1322,1336,1363,1367,1401,1407,1427,1446,1467,1471,1479,1487,1516,1537,1539,1544,1552,1554,1556,1562,1572,1582,1601,1617,1621,1647,1664,1673,1702,1716,1724,1733,1753,1778,1813,1823,1827,1850,1864,1878,1882,1905,1944,1975,1994,2008,2013,2040,2046]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Probability Greater Than .5 is Yes and Lower than .5 is No <\/th>\n      <th>Prediction - 2 Yes and 1 is No<\/th>\n      <th>Actual - 2 Yes and 1 is No<\/th>\n      <th>Employee Number<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-6518a20035adddcc2263" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6518a20035adddcc2263">{"x":{"filter":"top","filterHTML":"<tr>\n  <td>\u003c/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\">\u003c/span>\n    \u003c/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"1\">\u003c/div>\n      <span style=\"float: left;\">\u003c/span>\n      <span style=\"float: right;\">\u003c/span>\n    \u003c/div>\n  \u003c/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\">\u003c/span>\n    \u003c/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\">\u003c/div>\n      <span style=\"float: left;\">\u003c/span>\n      <span style=\"float: right;\">\u003c/span>\n    \u003c/div>\n  \u003c/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\">\u003c/span>\n    \u003c/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\">\u003c/div>\n      <span style=\"float: left;\">\u003c/span>\n      <span style=\"float: right;\">\u003c/span>\n    \u003c/div>\n  \u003c/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\">\u003c/span>\n    \u003c/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"2\" data-max=\"2068\">\u003c/div>\n      <span style=\"float: left;\">\u003c/span>\n      <span style=\"float: right;\">\u003c/span>\n    \u003c/div>\n  \u003c/td>\n\u003c/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294"],[0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],[1,1,1,1,1,1,1,2,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,1,1,1,1,1,2,1,1,1,1,1,2,1,2,2,1,1,1,1,2,1,1,1,1,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1],[1,1,1,1,2,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2,1,1,1,1,2,2,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,2,1,2,1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,2,1,1,2,1,2,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2,1,2,1,1,1,1,1,1,2,1,2,1,1,1,2,1,2,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,2,1,1,2,2,1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1],[2,7,10,20,27,36,42,55,60,64,68,73,75,80,94,102,119,128,129,131,132,144,148,152,158,171,175,178,182,194,197,199,204,208,214,221,233,243,247,253,254,297,303,305,307,311,315,325,328,343,359,361,363,364,366,367,385,387,408,410,412,423,426,438,450,451,463,484,501,507,514,517,534,543,550,555,560,564,569,573,575,582,585,593,604,606,611,614,635,639,641,656,657,663,679,682,690,702,712,714,729,763,764,776,784,785,786,789,791,793,802,812,836,837,847,850,857,869,875,880,885,893,901,925,939,940,944,947,964,966,970,982,985,997,998,1002,1005,1010,1012,1015,1016,1029,1036,1050,1066,1068,1079,1082,1085,1094,1098,1102,1113,1120,1133,1136,1137,1154,1158,1161,1188,1201,1203,1204,1210,1216,1217,1218,1225,1228,1235,1238,1240,1252,1264,1268,1270,1277,1291,1297,1301,1306,1308,1312,1317,1322,1336,1363,1367,1369,1379,1392,1401,1407,1420,1422,1427,1430,1431,1435,1438,1446,1448,1458,1461,1467,1471,1475,1479,1487,1516,1537,1539,1544,1551,1552,1554,1556,1562,1572,1582,1592,1594,1601,1608,1609,1611,1613,1617,1618,1621,1639,1647,1650,1655,1658,1664,1665,1673,1676,1693,1702,1709,1716,1722,1724,1725,1728,1733,1735,1740,1744,1753,1770,1771,1778,1794,1800,1804,1813,1823,1827,1850,1852,1863,1864,1878,1882,1892,1905,1934,1937,1941,1944,1945,1951,1960,1967,1975,1981,1987,1994,1997,1999,2008,2013,2018,2027,2032,2040,2041,2046,2065,2068]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th> \u003c/th>\n      <th>Probability Greater Than .5 is Yes and Lower than .5 is No \u003c/th>\n      <th>Prediction - 2 Yes and 1 is No\u003c/th>\n      <th>Actual - 2 Yes and 1 is No\u003c/th>\n      <th>Employee Number\u003c/th>\n    \u003c/tr>\n  \u003c/thead>\n\u003c/table>","options":{"pageLength":10,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ```r
 #Missclassification error 
@@ -954,15 +795,15 @@ knitr::kable(head(tabb))
 
                               No   Yes
 --------------------------  ----  ----
-total number                 114    14
-total missclassifications      6    13
+total number                 237    28
+total missclassifications      8    21
 
 ```r
 #Missclassification percentage
 1-sum(diag(tabb))/sum(tabb)
 ```
 
-[1] 0.1360544
+[1] 0.122449
 
 ```r
 #Goodness of fit test
@@ -970,7 +811,7 @@ total missclassifications      6    13
 with(model2,pchisq(null.deviance-deviance,df.null-df.residual,lower.tail = F))
 ```
 
-[1] 3.959023e-61
+[1] 5.392816e-52
 
 # Data Analysis and Discussion
 After cleaning up the file, the variables were characterized as ether numbers or parameters with levels. The levels were then transformed to numbers to find correlations with the Attrition. Once those correlations were calculated, the correlation coefficients were sorted from highest to lowest. The top 3 parameters with the highest positive correlation coefficients were:
