@@ -87,8 +87,11 @@ pander(AT)
 #And percentages
 at<-data.frame(table(df$Attrition))
 pander(prop.table(at[,2]))
-
 ```
+
+Attrition (%) | Retaining (%)
+------------- | -------------
+16.1 2%       | 83.88 %
 
 
 ## Correlation coeffientes between parameters and attrition

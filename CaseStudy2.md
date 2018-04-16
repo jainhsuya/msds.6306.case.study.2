@@ -112,6 +112,10 @@ pander(prop.table(at[,2]))
 
 *0.8388* and *0.1612*
 
+| Attrition (%) | Retaining (%) |
+|---------------|---------------|
+| 16.1 2%       | 83.88 %       |
+
 Correlation coeffientes between parameters and attrition
 --------------------------------------------------------
 
