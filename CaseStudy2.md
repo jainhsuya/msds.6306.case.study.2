@@ -187,7 +187,7 @@ corrplot(as.matrix(Attcor), method="color",
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ``` r
-# Top 10 positively correlated parameters with Attrition
+# Top 9 positively correlated parameters with Attrition
 par(cex=.6)
 SA10<-c(head(SortAtt$Parameter,10))
 corrplot(as.matrix(Attcor[SA10,SA10]), method="pie", 
@@ -217,6 +217,33 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-3.png)
 
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Top 3 Parameters</th>
+<th>Initial Observation - Compare Figure 1.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Overtime</td>
+<td><strong>Higher</strong> reported Overtime, employees are <strong>more</strong> likely to leave</td>
+</tr>
+<tr class="even">
+<td>Marital Status</td>
+<td><strong>Married</strong> employees are <strong>more</strong> likely to leave</td>
+</tr>
+<tr class="odd">
+<td>Distrance From Home</td>
+<td><strong>Farther</strong> employees are locations, employees are <strong>more</strong> likely to leave</td>
+</tr>
+</tbody>
+</table>
+
 Absolute values of the highly correlated parameters with attrition
 ------------------------------------------------------------------
 
@@ -230,7 +257,7 @@ well.
 Attrition$AbsAtt <- (Attrition$Correlation^2)^(1/2)
 SortAbstAtt<- Attrition[order(-Attrition$AbsAtt),]
 
-#Display top 10 Absolute Correlated Parameters
+#Display Top 9 Absolute Correlated Parameters
 row.names(SortAbstAtt)<-NULL
 knitr::kable(head(SortAbstAtt,10))
 ```
@@ -249,7 +276,7 @@ knitr::kable(head(SortAbstAtt,10))
 |   -0.1371449| StockOptionLevel     |  0.1371449|
 
 ``` r
-#Display graphic with top 9 Absolute Correlated Parameters
+#Display graphic with Highest Absolute Correlated Parameters
 par(cex=.8)
 SAA10<-c(head(SortAbstAtt$Parameter,10))
 corrplot(as.matrix(Attcor[SAA10,SAA10]), method="pie", 
