@@ -120,7 +120,8 @@ SortAtt <- Attrition[order(-Attrition$Correlation),]
 
 #Display top 10 Positively Correlated Parameters
 row.names(SortAtt)<-NULL
-knitr::kable(head(SortAtt,10))
+knitr::kable(head(SortAtt, 10))
+
 
 ```
 
@@ -151,17 +152,17 @@ corrplot(as.matrix(Attcor[SA10,SA10]), method="pie",
          title="Figure 1.2 Top 10 Postively Correlated Parameters", mar=c(0,0,2,0), tl.offset = 1, 
          diag=FALSE)
 
-# Plot each of Top 10 positively correlated parameters with Attrition
+# Plot each of Top 9 positively correlated parameters with Attrition
 par(mfrow=c(3,3), las=2)
-plot(Attrition~OverTime, data=df, main="Attrition vs Overtime")
-plot(Attrition~MaritalStatus, data=df, main="Attrition vs Marital Status")
-plot(Attrition~DistanceFromHome, data=df, main="Attrition vs Distance From Home")
-plot(Attrition~JobRole, data=df, main="Attrition vs Job Role")
-plot(Attrition~Department, data=df, main="Attrition vs Department")
-plot(Attrition~NumCompaniesWorked, data=df, main= "Attrition vs Number of Companies Worked")
-plot(Attrition~Gender, data=df, main= "Attrition vs Gender" )
-plot(Attrition~EducationField, data=df, main="Attrition vs Eduaction Field")
-plot(Attrition~MonthlyRate, data=df, main="Attrition vs Monlthly Rate")
+plot(Attrition~OverTime, data=df, main="Overtime", xlab="", ylab="Attrition")
+plot(Attrition~MaritalStatus, data=df, main="Marital Status", xlab="", ylab="")
+plot(Attrition~DistanceFromHome, data=df, main="Distance From Home", xlab="", ylab="")
+plot(Attrition~Gender, data=df, main= "Gender", xlab="", ylab="Attrition")
+plot(Attrition~MonthlyRate, data=df, main="Monlthly Rate", xlab="", ylab="")
+plot(Attrition~NumCompaniesWorked, data=df, main= "Num of Companies Worked", xlab="", ylab="")
+plot(Attrition~JobRole, data=df, main="Job Role", xlab="", ylab="Attrition")
+plot(Attrition~Department, data=df, main="Department", xlab="", ylab="")
+plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab="")
 
 ```
 
