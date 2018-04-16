@@ -180,7 +180,7 @@ corrplot(as.matrix(Attcor), method="color",
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
          sig.level = 0.05, insig = "blank",
-         title="Figure 1.1 Complete Coefficients and Correlations", 
+         title="Figure 1 Complete Coefficients and Correlations", mar=c(0,0,5,0), tl.offset = 1, 
          diag=FALSE)
 ```
 
