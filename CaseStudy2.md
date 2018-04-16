@@ -914,10 +914,10 @@ pander(model)
 </table>
 
 ``` r
-cat(paste("AIC Value is: ", model$aic))
+cat(paste("AIC for preliminary model is: ", model$aic))
 ```
 
-AIC Value is: 853.672603080109
+AIC for preliminary model is: 853.672603080109
 
 Refine model - Reduced Model
 ----------------------------
@@ -1389,10 +1389,10 @@ pander(anova(model2, test = 'Chisq'))
 </table>
 
 ``` r
-cat(model2$aic)
+cat(paste("AIC for refined model is: ", model2$aic))
 ```
 
-841.1039
+AIC for refined model is: 841.103874872031
 
 Evaluate top 3 parameters
 -------------------------
@@ -1405,10 +1405,10 @@ variables (p-value &lt;0.05)
 
 model3 <- glm(Attrition ~ JobSatisfaction + MaritalStatus + OverTime , family = 'binomial', data = train)
 
-cat(model3$aic)
+cat(paste("AIC for 3 variables model is: ", model3$aic))
 ```
 
-1030.523
+AIC for 3 variables model is: 1030.52337691324
 
 Reduced Model Evaluation
 ------------------------
@@ -1422,47 +1422,10 @@ names(comparison)<- c("Predicted","Actual","EmployeeNumber")
 pred <- ifelse(predmodel>0.5,2,1)
 
 #Loading required libraries
-library(ROCR)
-```
+suppressWarnings(suppressMessages(library(ROCR)))
+suppressWarnings(suppressMessages(library(Metrics)))
+suppressWarnings(suppressMessages(library(pROC)))
 
-    Loading required package: gplots
-
-
-    Attaching package: 'gplots'
-
-    The following object is masked from 'package:stats':
-
-        lowess
-
-``` r
-library(Metrics)
-```
-
-
-    Attaching package: 'Metrics'
-
-    The following object is masked from 'package:MicrosoftML':
-
-        logLoss
-
-``` r
-library(pROC)
-```
-
-    Type 'citation("pROC")' for a citation.
-
-
-    Attaching package: 'pROC'
-
-    The following object is masked from 'package:Metrics':
-
-        auc
-
-    The following objects are masked from 'package:stats':
-
-        cov, smooth, var
-
-``` r
 pr <- prediction(pred,test$Attrition)
 perf <- performance(pr,measure = "tpr",x.measure = "fpr")
 plot(perf)

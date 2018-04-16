@@ -321,7 +321,7 @@ model <- glm(Attrition ~ ., family = 'binomial', data = train)
 
 pander(model)
 
-cat(paste("AIC Value is: ", model$aic))
+cat(paste("AIC for preliminary model is: ", model$aic))
 
 ```
 
@@ -342,7 +342,7 @@ pander(model2)
 
 pander(anova(model2, test = 'Chisq'))
 
-cat(model2$aic)
+cat(paste("AIC for refined model is: ", model2$aic))
 
 ```
 
@@ -355,7 +355,7 @@ Evaluate Logistic Regression Model with top 3 statisticaly significant variables
 
 model3 <- glm(Attrition ~ JobSatisfaction + MaritalStatus + OverTime , family = 'binomial', data = train)
 
-cat(model3$aic)
+cat(paste("AIC for 3 variables model is: ", model3$aic))
 
 ```
 
@@ -370,9 +370,9 @@ names(comparison)<- c("Predicted","Actual","EmployeeNumber")
 pred <- ifelse(predmodel>0.5,2,1)
 
 #Loading required libraries
-library(ROCR)
-library(Metrics)
-library(pROC)
+suppressWarnings(suppressMessages(library(ROCR)))
+suppressWarnings(suppressMessages(library(Metrics)))
+suppressWarnings(suppressMessages(library(pROC)))
 
 pr <- prediction(pred,test$Attrition)
 perf <- performance(pr,measure = "tpr",x.measure = "fpr")
