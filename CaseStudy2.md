@@ -1556,12 +1556,12 @@ Conclusion
     2.  **Total working years**
     3.  **Job Level**
 
-2.  Observed that the Sales Representative were the most sensitive Job
-    Role to attrition affected with factors such as total working years,
-    job level and age.
+2.  Observed that the **Sales Representative** were the most sensitive
+    Job Role to attrition affected with factors such as total working
+    years, job level and age.
 
 3.  The Logistic Regression Model presented an **87%** accuracy and
-    resported below As the most statistically significnt variables:
+    resported below as the most statistically significnt variables:
 
     1.  **Overtime**  
     2.  **Job Stisfaction**
