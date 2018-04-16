@@ -914,16 +914,10 @@ pander(model)
 </table>
 
 ``` r
-cat("AIC Value is: ")
+cat(paste("AIC Value is: ", model$aic))
 ```
 
-AIC Value is:
-
-``` r
-cat(model$aic)
-```
-
-853.6726
+AIC Value is: 853.672603080109
 
 Refine model - Reduced Model
 ----------------------------

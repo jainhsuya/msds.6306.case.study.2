@@ -321,8 +321,7 @@ model <- glm(Attrition ~ ., family = 'binomial', data = train)
 
 pander(model)
 
-cat("AIC Value is: ")
-cat(model$aic)
+cat(paste("AIC Value is: ", model$aic))
 
 ```
 
