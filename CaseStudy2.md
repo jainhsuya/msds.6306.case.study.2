@@ -116,11 +116,11 @@ pander(prop.table(at[,2]))
 |---------------|---------------|
 | 16.1 2%       | 83.88 %       |
 
-The team has attempted on various univariate analysis to find the key
-attrition factors. After the analysis, it was evident to explore using
-different methodologies. \[Univarate findings and its draft are found in
-this\]
-(<https://github.com/cyberkoolman/msds.6306.case.study.2/blob/master/Univariate/univariate_draft.md>).
+The team has attempted on **various univariate analysis** to find the
+key attrition factors. After the analysis, **it was evident to explore
+using different methodologies**.  
+[Univarate findings and its draft are found in
+this](https://github.com/cyberkoolman/msds.6306.case.study.2/blob/master/Univariate/univariate_draft.md).
 
 Correlation coeffientes between parameters and attrition
 --------------------------------------------------------
