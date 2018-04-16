@@ -116,9 +116,13 @@ pander(prop.table(at[,2]))
 |---------------|---------------|
 | 16.1 2%       | 83.88 %       |
 
+**Outcome of Univariate Analysis**
+
 The team has attempted on **various univariate analysis** to find the
 key attrition factors. After the analysis, **it was evident to explore
-using different methodologies**. [Please find the univarate findings in
+using different methodologies**. Since the analysis were quite long and
+comprehensive in its own merit, the team has separated its analysis in
+the separate R markdown file. [Please find the univarate findings in
 this markdown draft for detailed
 analysis](https://github.com/cyberkoolman/msds.6306.case.study.2/blob/master/Univariate/univariate_draft.md).
 
