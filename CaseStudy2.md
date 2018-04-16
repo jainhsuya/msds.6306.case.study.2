@@ -177,10 +177,10 @@ suppressWarnings(suppressMessages(library(corrplot)))
 par(cex=.5)
 corrplot(as.matrix(Attcor), method="color", 
          type="upper", 
-         order="hclust",
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
-         sig.level = 0.05, insig = "blank", 
+         sig.level = 0.05, insig = "blank",
+         title="Figure 1.1 Complete Coefficients and Correlations", 
          diag=FALSE)
 ```
 
