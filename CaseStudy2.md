@@ -217,39 +217,67 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-3.png)
 
+|                                                                                |
+|:-------------------------------------------------------------------------------|
+| **Summary by analysis by top positively correlated parameters with Attrition** |
+
 <table>
 <colgroup>
-<col style="width: 100%" />
+<col style="width: 16%" />
+<col style="width: 83%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Summary by analysis by top positively correlated parameters with Attrition</th>
+<th>Top 3 Parameters</th>
+<th>Initial Observation - Compare Figure 1.2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Top 3 Parameters | Initial Observation - Compare Figure 1.2 ——————– | ————————————————————————————————– Overtime | <strong>Higher</strong> reported Overtime, employees are <strong>more</strong> likely to leave Marital Status | <strong>Married</strong> employees are <strong>more</strong> likely to leave Distrance From Home | <strong>Farther</strong> employees are locations, employees are <strong>more</strong> likely to leave</td>
+<td>Overtime</td>
+<td><strong>Higher</strong> reported Overtime, employees are <strong>more</strong> likely to leave</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">## Absolute values of the highly correlated parameters with attrition Because the level variables were converted to numeric variables, it is possible that strong correlations are reported as negative correlations. To account for this fact, we look at the correlation absolute values as well.</td>
+<td>Marital Status</td>
+<td><strong>Married</strong> employees are <strong>more</strong> likely to leave</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">```r ##Calculate absolute value coefficients Attrition<span class="math inline"><em>A</em><em>b</em><em>s</em><em>A</em><em>t</em><em>t</em> &lt;  − (<em>A</em><em>t</em><em>t</em><em>r</em><em>i</em><em>t</em><em>i</em><em>o</em><em>n</em></span>Correlation<sup>2)</sup>(1/2) SortAbstAtt&lt;- Attrition[order(-Attrition$AbsAtt),]</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">#Display Top 9 Absolute Correlated Parameters row.names(SortAbstAtt)&lt;-NULL knitr::kable(head(SortAbstAtt,10)) ```</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Correlation Parameter AbsAtt</td>
+<td>Distrance From Home</td>
+<td><strong>Farther</strong> employees are locations, employees are <strong>more</strong> likely to leave</td>
 </tr>
 </tbody>
 </table>
 
-1.0000000 Attrition 1.0000000 0.2461180 OverTime 0.2461180 -0.1710632
-TotalWorkingYears 0.1710632 -0.1691048 JobLevel 0.1691048 0.1620702
-MaritalStatus 0.1620702 -0.1605450 YearsInCurrentRole 0.1605450
--0.1598396 MonthlyIncome 0.1598396 -0.1592050 Age 0.1592050 -0.1561993
-YearsWithCurrManager 0.1561993 -0.1371449 StockOptionLevel 0.1371449
+Absolute values of the highly correlated parameters with attrition
+------------------------------------------------------------------
+
+Because the level variables were converted to numeric variables, it is
+possible that strong correlations are reported as negative correlations.
+To account for this fact, we look at the correlation absolute values as
+well.
+
+``` r
+##Calculate absolute value coefficients
+Attrition$AbsAtt <- (Attrition$Correlation^2)^(1/2)
+SortAbstAtt<- Attrition[order(-Attrition$AbsAtt),]
+
+#Display Top 9 Absolute Correlated Parameters
+row.names(SortAbstAtt)<-NULL
+knitr::kable(head(SortAbstAtt,10))
+```
+
+|  Correlation| Parameter            |     AbsAtt|
+|------------:|:---------------------|----------:|
+|    1.0000000| Attrition            |  1.0000000|
+|    0.2461180| OverTime             |  0.2461180|
+|   -0.1710632| TotalWorkingYears    |  0.1710632|
+|   -0.1691048| JobLevel             |  0.1691048|
+|    0.1620702| MaritalStatus        |  0.1620702|
+|   -0.1605450| YearsInCurrentRole   |  0.1605450|
+|   -0.1598396| MonthlyIncome        |  0.1598396|
+|   -0.1592050| Age                  |  0.1592050|
+|   -0.1561993| YearsWithCurrManager |  0.1561993|
+|   -0.1371449| StockOptionLevel     |  0.1371449|
 
 ``` r
 #Display graphic with Highest Absolute Correlated Parameters

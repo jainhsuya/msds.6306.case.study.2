@@ -168,8 +168,9 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 
 
 ----------------------------------------------------------------------------------------------------------------------
-Summary by analysis by top positively correlated parameters with Attrition
+**Summary by analysis by top positively correlated parameters with Attrition**
 ----------------------------------------------------------------------------------------------------------------------
+
 Top 3 Parameters     | Initial Observation - Compare Figure 1.2
 -------------------- | --------------------------------------------------------------------------------------------------
 Overtime             | **Higher** reported Overtime, employees are **more** likely to leave
