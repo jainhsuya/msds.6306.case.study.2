@@ -22,8 +22,8 @@ suppressWarnings(suppressMessages(library("gridExtra")))
 ```
 
 ``` r
-download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/Data/CaseStudy2-data.xlsx", "Data/data2.xlsx", mode="wb")
-case_data <- data.frame(read_excel("Data/data2.xlsx"))
+download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/Data/CaseStudy2-data.xlsx", "../Data/data2.xlsx", mode="wb")
+case_data <- data.frame(read_excel("../Data/data2.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
 case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
