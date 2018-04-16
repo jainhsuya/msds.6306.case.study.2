@@ -195,7 +195,7 @@ corrplot(as.matrix(Attcor[SA10,SA10]), method="pie",
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
          sig.level = 0.05, insig = "blank", 
-         title="Figure 1.2 Top 10 Postively Correlated Parameters", mar=c(0,0,2,0), tl.offset = 1, 
+         title="Figure 1.2 Top 9 Postively Correlated Parameters", mar=c(0,0,2,0), tl.offset = 1, 
          diag=FALSE)
 ```
 
@@ -249,7 +249,7 @@ knitr::kable(head(SortAbstAtt,10))
 |   -0.1371449| StockOptionLevel     |  0.1371449|
 
 ``` r
-#Display graphic with top 10 Absolute Correlated Parameters
+#Display graphic with top 9 Absolute Correlated Parameters
 par(cex=.8)
 SAA10<-c(head(SortAbstAtt$Parameter,10))
 corrplot(as.matrix(Attcor[SAA10,SAA10]), method="pie", 
@@ -257,14 +257,14 @@ corrplot(as.matrix(Attcor[SAA10,SAA10]), method="pie",
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
          sig.level = 0.05, insig = "blank", 
-         title="Figure 1.3 Top 10 Highly Correlated Parameters in absolute values", mar=c(0,0,2,0), tl.offset = 1, 
+         title="Figure 1.3 Top 9 Highly Correlated Parameters in absolute values", mar=c(0,0,2,0), tl.offset = 1, 
          diag=FALSE)
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ``` r
-#Further look at top 10 absolute correlated parameters with Attrition
+#Further look at top 9 absolute correlated parameters with Attrition
 par(mfrow=c(3,3), las=2)
 plot(Attrition~OverTime, data=df, main="Overtime", xlab="", ylab="Attrition")
 plot(Attrition~TotalWorkingYears, data=df, main="Total Working Years", xlab="", ylab="")
@@ -322,13 +322,14 @@ knitr::kable(head(SortJobRole))
 |   -0.0854574| JobLevel          |  0.0854574|
 
 ``` r
-#Display graphic with top 4 Absolute Correlated Parameters
+#Display graphic with top 4 Absolute Value of Correlated Parameters
 par(cex=.8)
 SJR5<-c(head(SortJobRole$Parameter,5))
 corrplot(as.matrix(Attcor[SJR5,SJR5]), method="pie", 
          type="upper", 
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
+         title="Figure 1.4 Top 4 Absolute Value of Correlated Parameters", mar=c(0,0,2,0), tl.offset = 1, 
          sig.level = 0.05, insig = "blank", 
          diag=FALSE)
 ```
