@@ -34,14 +34,10 @@ suppressWarnings(suppressMessages(library("readxl")))
 suppressWarnings(suppressMessages(library(RCurl)))
 
 # After unziping the provided datafile, the .xlsl document was loaded on GitHub, the code below process information from GitHub instead of our local computers.
-
-## After unziping the provided datafile, the .xlsl document was loaded on GitHub, the code below process information from GitHub instead of our local computers.
-
-download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/CaseStudy2-data.xlsx", "data2.xlsx", mode="wb")
+download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/Data/CaseStudy2-data.xlsx", "Data/data2.xlsx", mode="wb")
 
 ## Assign file to object 
-
-case_data <- data.frame(read_excel("data2.xlsx"))
+case_data <- data.frame(read_excel("Data/data2.xlsx"))
 
 ```
 
