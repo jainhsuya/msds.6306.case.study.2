@@ -217,9 +217,8 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-3.png)
 
-|                                                                                |
-|:-------------------------------------------------------------------------------|
-| **Summary by analysis by top positively correlated parameters with Attrition** |
+**Summary by analysis by top positively correlated parameters with Attrition**
+------------------------------------------------------------------------------
 
 <table>
 <colgroup>
