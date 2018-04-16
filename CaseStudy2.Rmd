@@ -7,39 +7,32 @@ output:
     variant: markdown_github
 ---
 # Exploratory Data Analysis
-The Exploratory Data Analysis (EDA) and extensive analysis have been employeed throughout this analysis and mainly consist of 3 large steps as below:
+The Exploratory Data Analysis (EDA) and extensive analysis have been employeed throughout this analysis and mainly consist of 3 main steps as below:
 
 1. **Exploratory Data Analysis** 
-   *  Explore: Attrition vs all variables
-   *  Quick identification of involved variables and visible trends
-   *  Clean and transform the information to a numeric dataset
+   *  Load Attrition data
+   *  Quick identification of all variables and visible trends
+   *  Clean and transform the features to a numeric dataset
 2. **Model Creation**
-   *  Evaluate Prediciton Models against requirements
-   *  Split dataset into training and test dataset
-   *  Create model and reduced model
+   *  Evaluate Prediciton Models against the requirements
+   *  Split dataset into a training dataset and a test dataset
+   *  Create a model and a reduced model
 3. **Cross Validation**
-   *  Create Predictions using a test dataset
-   *  Cross validation with test dataset
+   *  Create predictions using a test dataset
+   *  Cross-validate with a test dataset
    *  Study Results
 
-In addtion, the report includes an analyis of **Job Role specific trends** and recommended actions
-
-
-## Load the data file from GitHub
+In addtion, this report should include an analyis of **job role specific trends** and recommended actions to attain talents.
 
 ``` {r echo=TRUE, comment=NA, results='asis'}
-
-#load requeried library
+# Load requeried library
 suppressWarnings(suppressMessages(library("readxl")))
 suppressWarnings(suppressMessages(library(RCurl)))
 
-
-## After unziping the provided datafile, the .xlsl document was loaded on GitHub, the code below process information from GitHub instead of our local computers.
-
+# After unziping the provided datafile, the .xlsl document was loaded on GitHub, the code below process information from GitHub instead of our local computers.
 download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/Data/CaseStudy2-data.xlsx", "Data/data2.xlsx", mode="wb")
 
-## Assign file to object 
-
+# Assign file to object 
 case_data <- data.frame(read_excel("Data/data2.xlsx"))
 
 ```
@@ -55,8 +48,7 @@ First, Remove non-value added variables from the dataset
 
 ```{r echo=TRUE, results='asis'}
 
-#Remove redundandt info: EmployeeCount, Over18, StandardHours
-
+# Remove redundandt info: EmployeeCount, Over18, StandardHours
 df <- case_data[,-c(9,22,27)]
 
 ```
@@ -67,13 +59,11 @@ Second, Covert character variables to factors and factors to numeric variables a
 
 
 ```{r echo=TRUE, results='asis'}
-# First load required libraries.
-
+# Load required libraries.
 suppressWarnings(suppressMessages(library(purrr)))
 suppressWarnings(suppressMessages(library(dplyr)))
 suppressWarnings(suppressMessages(library(knitr)))
 suppressWarnings(suppressMessages(library(pander)))
-
 
 # Convert characters to factors.
 df %>% map_if(is.character, as.factor) %>% as_data_frame -> df
@@ -131,7 +121,7 @@ knitr::kable(head(SortAtt,10))
 ```{r echo=TRUE,  results='asis'}
 
 # Load library to visualize correlations
-library(corrplot)
+suppressWarnings(suppressMessages(library(corrplot)))
 
 #Display graphic with all correlations
 par(cex=.5)
