@@ -22,8 +22,8 @@ suppressWarnings(suppressMessages(library("gridExtra")))
 ```
 
 ``` r
-download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/CaseStudy2-data.xlsx", "data2.xlsx", mode="wb")
-case_data <- data.frame(read_excel("data2.xlsx"))
+download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/Data/CaseStudy2-data.xlsx", "Data/data2.xlsx", mode="wb")
+case_data <- data.frame(read_excel("Data/data2.xlsx"))
 
 factor_cols <- c("Attrition", "BusinessTravel", "Department", "Education", "EducationField", "EnvironmentSatisfaction", "Gender", "JobInvolvement", "JobLevel", "JobRole", "JobSatisfaction", "MaritalStatus", "OverTime")
 case_data[factor_cols] <- lapply(case_data[factor_cols], factor)
@@ -49,7 +49,7 @@ attrition_data[uni_1_cols] %>%
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 <table>
 <colgroup>
@@ -100,7 +100,7 @@ ggplot(case_data, aes(x = MonthlyIncome, fill=Attrition)) +
     ylab('Attrition')
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 ggplot(case_data, aes(x = PercentSalaryHike, fill=Attrition)) + 
@@ -111,7 +111,7 @@ ggplot(case_data, aes(x = PercentSalaryHike, fill=Attrition)) +
     ylab('Attrition')
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-5-2.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
 ``` r
 ggplot(case_data, aes(x = PerformanceRating, fill=Attrition)) + 
@@ -122,7 +122,7 @@ ggplot(case_data, aes(x = PerformanceRating, fill=Attrition)) +
     ylab('Attrition')
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-5-3.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-5-3.png)
 
 ``` r
 ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) + 
@@ -133,7 +133,7 @@ ggplot(case_data, aes(x = StockOptionLevel, fill=Attrition)) +
     ylab('Attrition')
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-5-4.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-5-4.png)
 
 <table>
 <colgroup>
@@ -182,7 +182,7 @@ attrition_data[uni_2_cols] %>%
     Warning: attributes are not identical across measure variables;
     they will be dropped
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 Univariate 3 - attrition by employee background
 -----------------------------------------------
@@ -213,9 +213,9 @@ multiplot(unit3_ps, cols=3)
 ```
 
 \[\[1\]\]
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-7-1.png)
 \[\[2\]\]
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-7-2.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
 Univariate 4 - attrition by stress factors
 ------------------------------------------
@@ -240,9 +240,9 @@ multiplot(unit4_ps, cols=3)
 ```
 
 \[\[1\]\]
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-8-1.png)
 \[\[2\]\]
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-8-2.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-8-2.png)
 
 Quick glance at attrition data by department
 --------------------------------------------
@@ -271,7 +271,7 @@ ggplot(att_by_dept, aes(x = reorder(Department, -Freq), y=Freq, fill=Attrition))
     ylab('Attrition')
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Univariate 2 - attrition with Age and Years at Company
 ------------------------------------------------------
@@ -280,7 +280,7 @@ Univariate 2 - attrition with Age and Years at Company
 featurePlot(x = case_data[, c('Age', 'YearsAtCompany')], y = case_data$Attrition, plot = "density", auto.key = list(columns = 2))
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 Univariate 3 - attrition by job role
 ------------------------------------
@@ -294,7 +294,7 @@ ggplot(case_data, aes(x = JobRole, fill = Attrition)) +
   coord_flip()
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 ggplot(case_data, aes(x = JobRole)) + 
@@ -304,7 +304,7 @@ ggplot(case_data, aes(x = JobRole)) +
   coord_flip()
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-12-2.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-12-2.png)
 
 Univariate 4 - attrition by education field
 -------------------------------------------
@@ -315,7 +315,7 @@ ggplot(case_data, aes(x = EducationField, ..count..)) +
   theme(axis.text.x = element_text(size  = 10, angle = 45,hjust = 1,vjust = 1))
 ```
 
-![](univariate_by_groups_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](univariate_draft_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 Summary
 -------
