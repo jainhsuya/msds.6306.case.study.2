@@ -1551,9 +1551,9 @@ Conclusion
 
 1.  The data science team identified
 
-2.  Overtime  
-3.  Total working years
-4.  Job Level
+    1.  **Overtime**  
+    2.  **Total working years**
+    3.  **Job Level**
 
 As the top three most highly correlated factor that lead to turnover.
 
@@ -1561,12 +1561,12 @@ As the top three most highly correlated factor that lead to turnover.
     Role to attrition affected with factors such as total working years,
     job level and age.
 
-2.  The Logistic Regression Model presented an 87% accuracy and
+2.  The Logistic Regression Model presented an **87%** accuracy and
     resported
 
-3.  Overtime  
-4.  Job Stisfaction
-5.  Martial Status
+    1.  **Overtime**  
+    2.  **Job Stisfaction**
+    3.  **Martial Status**
 
 As the most statistically significnt variables.
 
