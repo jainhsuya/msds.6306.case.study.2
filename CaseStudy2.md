@@ -18,14 +18,11 @@ as below:
     -   Cross validation with test dataset
     -   Study Results
 
-In addtion, the report includes an analyis of Job Role specific trends
-and recommended actions
+In addtion, the report includes an analyis of **Job Role specific
+trends** and recommended actions
 
-Loading data file from GitHub
------------------------------
-
-1.  Saved the excel fie into GitHub. The code below reads straight from
-    GitHubs URL.
+Load the data file from GitHub
+------------------------------
 
 ``` r
 #load requeried library
@@ -45,7 +42,7 @@ case_data <- data.frame(read_excel("Data/data2.xlsx"))
 Clean data
 ----------
 
-1.  Remove non-value added variables from the dataset
+First, Remove non-value added variables from the dataset
 
 -   **EmployeeCount**: Always 1, since the data set is by employee.
 -   **Over18**: All employees are “Y”. Age is a more meaningful and
@@ -58,8 +55,8 @@ Clean data
 df <- case_data[,-c(9,22,27)]
 ```
 
-1.  Covert character variables to factors and factors to numeric
-    variables as need
+Second, Covert character variables to factors and factors to numeric
+variables as need
 
 -   To evaluate correlations we need to use numeric variables, and
     evaluate whether the correlations were positive or negative for
@@ -86,10 +83,10 @@ levels(df$BusinessTravel)<-c("Non-Travel","Travel_Rarely","Travel_Frequently")
 numdf<-data.frame(sapply(df,as.numeric))
 ```
 
-Analysis of Attrition
----------------------
+Simple Analysis of Attrition
+----------------------------
 
-Determin the attrition count and percentage
+Quick glance of the attrition count and percentage
 
 ``` r
 #Calculate attrition in data set

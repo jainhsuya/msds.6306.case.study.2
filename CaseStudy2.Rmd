@@ -22,11 +22,10 @@ The Exploratory Data Analysis (EDA) and extensive analysis have been employeed t
    *  Cross validation with test dataset
    *  Study Results
 
-In addtion, the report includes an analyis of Job Role specific trends and recommended actions
+In addtion, the report includes an analyis of **Job Role specific trends** and recommended actions
 
 
-## Loading data file from GitHub
-1. Saved the excel fie into GitHub. The code below reads straight from GitHubs URL.
+## Load the data file from GitHub
 
 ``` {r echo=TRUE, comment=NA, results='asis'}
 
@@ -48,7 +47,7 @@ case_data <- data.frame(read_excel("Data/data2.xlsx"))
 
 ## Clean data
 
-1. Remove non-value added variables from the dataset
+First, Remove non-value added variables from the dataset
 
 * **EmployeeCount**: Always 1, since the data set is by employee. 
 * **Over18**: All employees are "Y". Age is a more meaningful and relevant variable. 
@@ -62,7 +61,7 @@ df <- case_data[,-c(9,22,27)]
 
 ```
 
-2. Covert character variables to factors and factors to numeric variables as need
+Second, Covert character variables to factors and factors to numeric variables as need
 
 * To evaluate correlations we need to use numeric variables, and evaluate whether the correlations were positive or negative for character variables. Later we will use the factor variables for further analysis. Here we create two data frames, one with level plus numeric variables and the other with only numeric variables.
 
@@ -87,8 +86,8 @@ numdf<-data.frame(sapply(df,as.numeric))
 
 ```
 
-## Analysis of Attrition
-Determin the attrition count and percentage
+## Simple Analysis of Attrition
+Quick glance of the attrition count and percentage
 ``` {r echo=TRUE,  results='asis'}
 
 #Calculate attrition in data set
