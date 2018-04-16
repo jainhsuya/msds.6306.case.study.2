@@ -74,8 +74,8 @@ levels(df$BusinessTravel)<-c("Non-Travel","Travel_Rarely","Travel_Frequently")
 numdf<-data.frame(sapply(df,as.numeric))
 ```
 
-Simple Analysis of Attrition
-----------------------------
+Simple Analysis of Attrition plus result of Univaratite Analysis
+----------------------------------------------------------------
 
 Quick glance of the attrition count and percentage
 
@@ -115,6 +115,12 @@ pander(prop.table(at[,2]))
 | Attrition (%) | Retaining (%) |
 |---------------|---------------|
 | 16.1 2%       | 83.88 %       |
+
+The team has attempted on various univariate analysis to find the key
+attrition factors. After the analysis, it was evident to explore using
+different methodologies. \[Univarate findings and its draft are found in
+this\]
+(<https://github.com/cyberkoolman/msds.6306.case.study.2/blob/master/Univariate/univariate_draft.md>).
 
 Correlation coeffientes between parameters and attrition
 --------------------------------------------------------
