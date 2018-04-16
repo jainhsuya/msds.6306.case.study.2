@@ -140,7 +140,7 @@ corrplot(as.matrix(Attcor), method="color",
          title="Figure 1.1 Complete Coefficients and Correlations", mar=c(0,0,5,0), tl.offset = 1, 
          diag=FALSE)
 
-#Display graphic with the top 10 positively correlated parameter
+# Top 10 positively correlated parameters with Attrition
 par(cex=.8)
 SA10<-c(head(SortAtt$Parameter,10))
 corrplot(as.matrix(Attcor[SA10,SA10]), method="pie", 
@@ -151,7 +151,7 @@ corrplot(as.matrix(Attcor[SA10,SA10]), method="pie",
          title="Figure 1.2 Top 10 Postively Correlated Parameters", mar=c(0,0,5,0), tl.offset = 1, 
          diag=FALSE)
 
-# Further look at top 10 positively correlated parameters with Attrition
+# Plot each of Top 10 positively correlated parameters with Attrition
 par(mfrow=c(3,3), las=2)
 plot(Attrition~OverTime, data=df, main="Attrition vs Overtime")
 plot(Attrition~MaritalStatus, data=df, main="Attrition vs Marital Status")

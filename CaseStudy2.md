@@ -187,7 +187,7 @@ corrplot(as.matrix(Attcor), method="color",
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ``` r
-#Display graphic with the top 10 positively correlated parameter
+# Top 10 positively correlated parameters with Attrition
 par(cex=.8)
 SA10<-c(head(SortAtt$Parameter,10))
 corrplot(as.matrix(Attcor[SA10,SA10]), method="pie", 
@@ -202,7 +202,7 @@ corrplot(as.matrix(Attcor[SA10,SA10]), method="pie",
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-2.png)
 
 ``` r
-# Further look at top 10 positively correlated parameters with Attrition
+# Plot each of Top 10 positively correlated parameters with Attrition
 par(mfrow=c(3,3), las=2)
 plot(Attrition~OverTime, data=df, main="Attrition vs Overtime")
 plot(Attrition~MaritalStatus, data=df, main="Attrition vs Marital Status")
