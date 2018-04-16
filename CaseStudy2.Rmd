@@ -93,7 +93,7 @@ Attrition (%) | Retaining (%)
 ------------- | -------------
 16.1 2%       | 83.88 %
 
-**Outcome of Univariate Analysis**
+### Observation by Univariate Analysis**
 
 The team has attempted on **various univariate analysis** to find the key attrition factors.  After the analysis, **it was evident to explore using different methodologies**.  Since the analysis were quite long and comprehensive in its own merit, the team has separated its analysis in the separate R markdown file. [Please find the univarate findings in this markdown draft for detailed analysis](https://github.com/cyberkoolman/msds.6306.case.study.2/blob/master/Univariate/univariate_draft.md).
 
@@ -167,7 +167,7 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 ```
 
 
-### Summary by analysis by top positively correlated parameters with Attrition
+### Observation by analysis by top positively correlated parameters with Attrition
 
 
 Top 3 Parameters     | Initial Observation - Compare Figure 1.2
@@ -215,7 +215,7 @@ plot(Attrition~YearsWithCurrManager, data=df, main="Years with Current Manager",
 plot(Attrition~StockOptionLevel, data=df, main="Stock Option Level", xlab="", ylab="")
 ```
 
-### Summary by analysis by top absolute value of correlated parameters with Attrition
+### Observation by analysis by top absolute value of correlated parameters with Attrition
 
 Top 3 Parameters     | Initial Observation - Compare Figure 1.2
 -------------------- | --------------------------------------------------------------------------------------------------
@@ -271,7 +271,7 @@ plot(MonthlyIncome~JobRole, data=df, main= "Montly Income vs Job Role")
 ```
 
 
-### Trends related to job specific roles
+### Observation of trends related to job specific roles
 When looking at the job roles, we notice the role with the highest attrition is Sales Representative and the one with the least is the Research Director. This is in agreement with the previously discuss observations the Sales Representatives are, on average, **the youngest with the less total working years and the lower monthly income**. 
 
 
@@ -412,7 +412,8 @@ When evaluating the absolute value of the correlations, the top three parameters
 
 Here it is clear that the negative correlation provides useful information because identifies a strong correlation between the few years" total working years", "job level" and "years with current manager" and attrition. Another interesting trend can be observed in the "years in current role". Where the trend shows a trend, looking like there is probably an expectation of promotion or salary increase. The data obtain here is data from variables that can be address from an organizational perspective. Having few total working years and a low job level might be related but required further analysis. Employees with few total working years and a low job level might be an easily trained or target group for retention. Other variables showed similar trends and similar behavior, years in current role, years with current manager, and monthly income.   
 Another question looking to answer were trends related to job specific roles. When looking at the job roles. We get that Role with the highest attrition is Sales Representative and the one with the least is the Research Director. And in agreement with the previously discuss observations the Sales Representatives are, on average, the youngest with the less total working years and the lower monthly income. 
-As data scientist the team provided a logistic regression model to help predict the probability of an employee to leave the company. The model requires refining with a data learning algorithm but at the moment presets an approximate accuracy of 70% AUC-ROC with a miscalculation of about 14% of the data provided.   The model was developed with a train test ratio of 90% of the data set. 
+
+As a team of data scientists, this report contains a logistic regression model to help predict the probability of an employee to leave the company. The model requires refining with a data learning algorithm but at the moment presets an approximate accuracy of 70% AUC-ROC with a miscalculation of about 14% of the data provided.   The model was developed with a train test ratio of 90% of the dataset. 
 
 From the logistic regression model, the parameters with the highest logistic regression coefficients were 
 

@@ -116,7 +116,7 @@ pander(prop.table(at[,2]))
 |---------------|---------------|
 | 16.1 2%       | 83.88 %       |
 
-**Outcome of Univariate Analysis**
+### Observation by Univariate Analysis\*\*
 
 The team has attempted on **various univariate analysis** to find the
 key attrition factors. After the analysis, **it was evident to explore
@@ -217,7 +217,7 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-3.png)
 
-### Summary by analysis by top positively correlated parameters with Attrition
+### Observation by analysis by top positively correlated parameters with Attrition
 
 <table>
 <colgroup>
@@ -308,7 +308,7 @@ plot(Attrition~StockOptionLevel, data=df, main="Stock Option Level", xlab="", yl
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
-### Summary by analysis by top absolute value of correlated parameters with Attrition
+### Observation by analysis by top absolute value of correlated parameters with Attrition
 
 <table>
 <colgroup>
@@ -415,7 +415,7 @@ plot(MonthlyIncome~JobRole, data=df, main= "Montly Income vs Job Role")
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-8-5.png)
 
-### Trends related to job specific roles
+### Observation of trends related to job specific roles
 
 When looking at the job roles, we notice the role with the highest
 attrition is Sales Representative and the one with the least is the
@@ -1726,13 +1726,14 @@ roles. When looking at the job roles. We get that Role with the highest
 attrition is Sales Representative and the one with the least is the
 Research Director. And in agreement with the previously discuss
 observations the Sales Representatives are, on average, the youngest
-with the less total working years and the lower monthly income. As data
-scientist the team provided a logistic regression model to help predict
-the probability of an employee to leave the company. The model requires
-refining with a data learning algorithm but at the moment presets an
-approximate accuracy of 70% AUC-ROC with a miscalculation of about 14%
-of the data provided. The model was developed with a train test ratio of
-90% of the data set.
+with the less total working years and the lower monthly income.
+
+As a team of data scientists, this report contains a logistic regression
+model to help predict the probability of an employee to leave the
+company. The model requires refining with a data learning algorithm but
+at the moment presets an approximate accuracy of 70% AUC-ROC with a
+miscalculation of about 14% of the data provided. The model was
+developed with a train test ratio of 90% of the dataset.
 
 From the logistic regression model, the parameters with the highest
 logistic regression coefficients were
