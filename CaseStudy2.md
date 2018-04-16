@@ -1,32 +1,20 @@
-Executive Summary
-=================
+Exploratory Data Analysis
+=========================
 
-Introduction
-============
+The Exploratory Data Analysis (EDA) and extensive analysis have been
+employeed throughout this analysis and mainly consist of 3 large steps
+as below:
 
-DDSAnalytics is an analytics company that specializes in talent
-management solutions for Fortune 1000 companies. Talent management is
-defined as the iterative process of developing and retaining employees.
-It may include workforce planning, employee training programs,
-identifying high-potential employees and reducing/preventing voluntary
-employee turnover (attrition). To gain a competitive edge over its
-competition, DDSAnalytics decided to leverage data science for talent
-management. The executive leadership identified predicting employee
-turnover as its first application of data science for talent management.
-Before the business green lights the project, they tasked the data
-science team to conduct an analysis of existing employee data. The scope
-of this report is to summarize those findings.
+**1. Exploratory Data Analysis** \* Explore: Attrition vs all variables
+\* Quick identification of involved variables and visible trends \*
+Clean and transform the information to a numeric dataset **2. Model
+Creation** \* Evaluate Prediciton Models against requirements \* Split
+dataset into training and test dataset \* Create model and reduced model
+**3. Cross Validation** \* Create Predictions using a test dataset \*
+Cross validation with test dataset \* Study Results
 
-To conduct exploratory data analysis (EDA), the data science team was
-provided with CaseStudy2Data.zip file to determine factors that lead to
-attrition. From this data, the team was asked to identify (at least) the
-top three factors that contribute to turnover, to learn about any job
-role specific trends that may exist in the data set (e.g., “Data
-Scientists have the highest job satisfaction”) and to provide any other
-interesting trends and observations. All the Experiments and analysis
-were conducted in R.
-
-\#EDA
+In addtion, the report includes an analyis of Job Role specific trends
+and recommended actions
 
 Loading data file from GitHub
 -----------------------------
@@ -36,15 +24,10 @@ Loading data file from GitHub
 
 ``` r
 #load requeried library
-library("readxl")
-require(RCurl)
-```
+suppressWarnings(suppressMessages(library("readxl")))
+suppressWarnings(suppressMessages(library(RCurl)))
 
-    Loading required package: RCurl
 
-    Loading required package: bitops
-
-``` r
 ## After unziping the provided datafile, the .xlsl document was loaded on GitHub, the code below process information from GitHub instead of our local computers.
 
 download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.study.2/master/Data/CaseStudy2-data.xlsx", "Data/data2.xlsx", mode="wb")
@@ -54,16 +37,15 @@ download.file("https://raw.githubusercontent.com/cyberkoolman/msds.6306.case.stu
 case_data <- data.frame(read_excel("Data/data2.xlsx"))
 ```
 
-Making the raw data tidy data
------------------------------
+Clean data
+----------
 
-\#\#\#1. Removing non-value added variables from the data set:
+1.  Remove non-value added variables from the dataset
 
-The following variable were removed: EmployeeCount, Over18 and
-StandardHours. These variables were removed because 1. EmployeeCount:
-Always 1, since the data set is by employee. 2. Over18: All employees
-are “Y”. Age is a more meaningful and relevant variable. 3.
-StandardHours: All are “80”.
+-   **EmployeeCount**: Always 1, since the data set is by employee.
+-   **Over18**: All employees are “Y”. Age is a more meaningful and
+    relevant variable.
+-   **StandardHours**: All are “80”.
 
 ``` r
 #Remove redundandt info: EmployeeCount, Over18, StandardHours
@@ -71,36 +53,23 @@ StandardHours: All are “80”.
 df <- case_data[,-c(9,22,27)]
 ```
 
-\#\#\#2. Covertiving character variables to factors and factors to
-numeric variables as need
+1.  Covert character variables to factors and factors to numeric
+    variables as need
 
-To evaluate correlations we used use numeric variables, and evaluate
-whether the correlations were positive or negative for character
-variables. Later we used the factor variables for further analysis. Here
-used two data frames, one with level and numeric variables and one with
-only numeric variables.
+-   To evaluate correlations we need to use numeric variables, and
+    evaluate whether the correlations were positive or negative for
+    character variables. Later we will use the factor variables for
+    further analysis. Here we create two data frames, one with level
+    plus numeric variables and the other with only numeric variables.
 
 ``` r
 # First load required libraries.
 
-library(purrr)
-library(dplyr)
-```
+suppressWarnings(suppressMessages(library(purrr)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(knitr)))
+suppressWarnings(suppressMessages(library(pander)))
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
-library(knitr)
-library(pander)
 
 # Convert characters to factors.
 df %>% map_if(is.character, as.factor) %>% as_data_frame -> df
@@ -112,11 +81,10 @@ levels(df$BusinessTravel)<-c("Non-Travel","Travel_Rarely","Travel_Frequently")
 numdf<-data.frame(sapply(df,as.numeric))
 ```
 
-Attrition in data set
+Analysis of Attrition
 ---------------------
 
-Once the data set was ready for evaluation, the attrition content was
-determined.
+Determin the attrition count and percentage
 
 ``` r
 #Calculate attrition in data set
@@ -149,11 +117,13 @@ at<-data.frame(table(df$Attrition))
 pander(prop.table(at[,2]))
 ```
 
-*0.8388* and *0.1612* respectively.
+*0.8388* and *0.1612*
 
-\#\#Find correlation coeffientes between parameters and Attrition The
-correlation coefficients were calculated between numeric variables,
-paying closer attention to highest correating coeffients with Attrition
+Correlation coeffientes between parameters and attrition
+--------------------------------------------------------
+
+Calculate correlation coefficients to locate highest correating
+coeffients with Attrition
 
 ``` r
 #Correlate variables
@@ -189,11 +159,8 @@ knitr::kable(head(SortAtt,10))
 |    0.0268455| EducationField     |
 |    0.0151702| MonthlyRate        |
 
-Generate graphics for visualization of coeffiecients and correlations
----------------------------------------------------------------------
-
-Graphics will all the variables and just the highest correlations were
-generated. Also, bar graphs displayed for the highest correlations
+Visualize coeffiecients and correlations
+----------------------------------------
 
 ``` r
 # Load library to visualize correlations
@@ -245,11 +212,13 @@ plot(Attrition~MonthlyRate, data=df, main="Attrition vs Monlthly Rate")
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-3.png)
 
-\#\#Check the absolute values of the highly correlated parameters with
-Attrition. And verify with graphics. Because the level variables were
-converted to numeric variables, it is possible that strong correlations
-are reported as negative correlations. To account for this fact, we
-looked at the correlation absolute values as well.
+Absolute values of the highly correlated parameters with attrition
+------------------------------------------------------------------
+
+Because the level variables were converted to numeric variables, it is
+possible that strong correlations are reported as negative correlations.
+To account for this fact, we look at the correlation absolute values as
+well.
 
 ``` r
 ##Calculate absolute value coefficients
@@ -304,12 +273,11 @@ plot(Attrition~StockOptionLevel, data=df, main="Attrition vs Stock Option Level"
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
-Looking at Job Role Specific Trends
-===================================
+Job Role Specific Trends
+========================
 
-To answer question regarding Job specific trends. First we looked at Job
-Role and its relation with attrition. And then looked at correlations
-between the other parameters and Job Role
+First, we look at the Job Role and its relation with attrition, then
+look at correlations between the other parameters and the Job Role
 
 ``` r
 # Display Job Role and Attrition correlation bar graph
@@ -1639,8 +1607,8 @@ cat(with(model2,pchisq(null.deviance-deviance,df.null-df.residual,lower.tail = F
 
 3.959023e-61
 
-Data Analysis and Discussion
-============================
+Executive Summary
+=================
 
 After cleaning up the file, the variables were characterized as ether
 numbers or parameters with levels. The levels were then transformed to
