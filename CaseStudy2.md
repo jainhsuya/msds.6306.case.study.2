@@ -180,7 +180,7 @@ corrplot(as.matrix(Attcor), method="color",
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
          sig.level = 0.05, insig = "blank",
-         title="Figure 1.1 Complete Coefficients and Correlations", mar=c(0,0,5,0), tl.offset = 1, 
+         title="Figure 1.1 Complete Coefficients and Correlations", mar=c(0,0,2,0), tl.offset = 1, 
          diag=FALSE)
 ```
 
@@ -188,14 +188,14 @@ corrplot(as.matrix(Attcor), method="color",
 
 ``` r
 # Top 10 positively correlated parameters with Attrition
-par(cex=.8)
+par(cex=.6)
 SA10<-c(head(SortAtt$Parameter,10))
 corrplot(as.matrix(Attcor[SA10,SA10]), method="pie", 
          type="upper", 
          addCoef.col = "black",
          tl.col="black", tl.srt=45,
          sig.level = 0.05, insig = "blank", 
-         title="Figure 1.2 Top 10 Postively Correlated Parameters", mar=c(0,0,5,0), tl.offset = 1, 
+         title="Figure 1.2 Top 10 Postively Correlated Parameters", mar=c(0,0,2,0), tl.offset = 1, 
          diag=FALSE)
 ```
 
