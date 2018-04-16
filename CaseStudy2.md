@@ -217,7 +217,7 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-6-3.png)
 
-#### Summary by analysis by top positively correlated parameters with Attrition
+### Summary by analysis by top positively correlated parameters with Attrition
 
 <table>
 <colgroup>
@@ -237,7 +237,7 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 </tr>
 <tr class="even">
 <td>Marital Status</td>
-<td><strong>Married</strong> employees are <strong>more</strong> likely to leave</td>
+<td><strong>Married</strong> employees are <strong>more</strong> likely to leave. This observation may be tied to other factors and can be challenging for company to address</td>
 </tr>
 <tr class="odd">
 <td>Distrance From Home</td>
@@ -307,6 +307,35 @@ plot(Attrition~StockOptionLevel, data=df, main="Stock Option Level", xlab="", yl
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-7-2.png)
+
+### Summary by analysis by top absolute value of correlated parameters with Attrition
+
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Top 3 Parameters</th>
+<th>Initial Observation - Compare Figure 1.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Overtime</td>
+<td><strong>Higher</strong> reported Overtime, employees are <strong>more</strong> likely to leave</td>
+</tr>
+<tr class="even">
+<td>Total Working Years</td>
+<td><strong>Higher</strong> working years on employees are <strong>more</strong> likely to leave</td>
+</tr>
+<tr class="odd">
+<td>Job Level</td>
+<td><strong>Higher</strong> job levels, employees are <strong>more</strong> likely to leave</td>
+</tr>
+</tbody>
+</table>
 
 Job Role Specific Trends
 ========================

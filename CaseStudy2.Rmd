@@ -167,14 +167,15 @@ plot(Attrition~EducationField, data=df, main="Eduaction Field", xlab="", ylab=""
 ```
 
 
-#### Summary by analysis by top positively correlated parameters with Attrition
+### Summary by analysis by top positively correlated parameters with Attrition
 
 
 Top 3 Parameters     | Initial Observation - Compare Figure 1.2
 -------------------- | --------------------------------------------------------------------------------------------------
 Overtime             | **Higher** reported Overtime, employees are **more** likely to leave
-Marital Status       | **Married** employees are **more** likely to leave
+Marital Status       | **Married** employees are **more** likely to leave.  This observation may be tied to other factors and can be challenging for company to address
 Distrance From Home  | **Farther** employees are locations, employees are **more** likely to leave
+
 
 
 ## Absolute values of the highly correlated parameters with attrition
@@ -213,6 +214,16 @@ plot(Attrition~Age, data=df, main="Age", xlab="", ylab="Attrition")
 plot(Attrition~YearsWithCurrManager, data=df, main="Years with Current Manager", xlab="", ylab="")
 plot(Attrition~StockOptionLevel, data=df, main="Stock Option Level", xlab="", ylab="")
 ```
+
+### Summary by analysis by top absolute value of correlated parameters with Attrition
+
+Top 3 Parameters     | Initial Observation - Compare Figure 1.2
+-------------------- | --------------------------------------------------------------------------------------------------
+Overtime             | **Higher** reported Overtime, employees are **more** likely to leave
+Total Working Years  | **Higher** working years on employees are **more** likely to leave
+Job Level            | **Higher** job levels, employees are **more** likely to leave
+
+
 
 # Job Role Specific Trends
 First, we look at the Job Role and its relation with attrition, then look at correlations between the other parameters and the Job Role
