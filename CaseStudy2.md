@@ -352,20 +352,20 @@ plot(Attrition~JobRole, data=df, main="Attrition vs. Job Role")
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 ``` r
-#Generate object for Job Role correlation coefficients 
+# Generate object for Job Role correlation coefficients 
 JobRole<- data.frame(Attcor$JobRole)
 
-#Name JobRole rows
+# Name JobRole rows
 JobRole$Parameter<-row.names(Attcor)
 
-#Rename titles Attrition
+# Rename titles Attrition
 names(JobRole)<-c("Correlation", "Parameter")
 
-##Calculate absolute value coefficients
+# Calculate absolute value coefficients
 JobRole$Abs <- (JobRole$Correlation^2)^(1/2)
 SortJobRole<- JobRole[order(-JobRole$Abs),]
 
-#Display top 5 Absolute Correlated Parameters
+# Display top 5 Absolute Correlated Parameters
 row.names(SortJobRole)<-NULL
 knitr::kable(head(SortJobRole))
 ```
@@ -380,7 +380,7 @@ knitr::kable(head(SortJobRole))
 |   -0.0854574| JobLevel          |  0.0854574|
 
 ``` r
-#Display graphic with top 4 Absolute Value of Correlated Parameters
+# Display graphic with top 4 Absolute Value of Correlated Parameters
 par(cex=.8)
 SJR5<-c(head(SortJobRole$Parameter,5))
 corrplot(as.matrix(Attcor[SJR5,SJR5]), method="pie", 
@@ -395,7 +395,7 @@ corrplot(as.matrix(Attcor[SJR5,SJR5]), method="pie",
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-8-2.png)
 
 ``` r
-#Further look at top 4 absolute correlated parameters with Job ROle
+# Further look at top 4 absolute correlated parameters with Job ROle
 par(las=2)
 par(mar=c(12, 12, 5, 2.1),mgp=c(10, 1, 0),las=2)
 plot(TotalWorkingYears~JobRole, data=df, main="Total Working Years vs Job Role")
@@ -414,6 +414,14 @@ plot(MonthlyIncome~JobRole, data=df, main= "Montly Income vs Job Role")
 ```
 
 ![](CaseStudy2_files/figure-markdown_github/unnamed-chunk-8-5.png)
+
+### Trends related to job specific roles
+
+When looking at the job roles, we notice the role with the highest
+attrition is Sales Representative and the one with the least is the
+Research Director. This is in agreement with the previously discuss
+observations the Sales Representatives are, on average, **the youngest
+with the less total working years and the lower monthly income**.
 
 Logistic Regression Model
 =========================
