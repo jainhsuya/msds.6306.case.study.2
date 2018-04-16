@@ -22,13 +22,6 @@ To conduct exploratory data analysis (EDA), the data science team was provided w
 ```r
 #load requeried library
 library("readxl")
-```
-
-```
-Warning: package 'readxl' was built under R version 3.4.4
-```
-
-```r
 require(RCurl)
 ```
 
@@ -101,13 +94,7 @@ library(dplyr)
 ```r
 library(knitr)
 library(pander)
-```
 
-```
-## Warning: package 'pander' was built under R version 3.4.4
-```
-
-```r
 # Convert characters to factors.
 df %>% map_if(is.character, as.factor) %>% as_data_frame -> df
 
@@ -190,10 +177,6 @@ Graphics will all the variables and just the highest correlations were generated
 ```r
 # Load library to visualize correlations
 library(corrplot)
-```
-
-```
-## Warning: package 'corrplot' was built under R version 3.4.4
 ```
 
 ```
@@ -412,13 +395,6 @@ Start with a preliminary model with all the variables
 ## Load requiered libraries
 
 library(psych)
-```
-
-```
-Warning: package 'psych' was built under R version 3.4.4
-```
-
-```r
 library(pander)
 
 #Logistic Regression
@@ -873,10 +849,6 @@ library(ROCR)
 ```
 
 ```
-Warning: package 'ROCR' was built under R version 3.4.4
-```
-
-```
 Loading required package: gplots
 ```
 
@@ -893,18 +865,7 @@ The following object is masked from 'package:stats':
 
 ```r
 library(Metrics)
-```
-
-```
-Warning: package 'Metrics' was built under R version 3.4.4
-```
-
-```r
 library(pROC)
-```
-
-```
-Warning: package 'pROC' was built under R version 3.4.4
 ```
 
 ```
