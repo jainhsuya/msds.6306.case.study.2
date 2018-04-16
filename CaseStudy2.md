@@ -5,13 +5,18 @@ The Exploratory Data Analysis (EDA) and extensive analysis have been
 employeed throughout this analysis and mainly consist of 3 large steps
 as below:
 
-**1. Exploratory Data Analysis** \* Explore: Attrition vs all variables
-\* Quick identification of involved variables and visible trends \*
-Clean and transform the information to a numeric dataset **2. Model
-Creation** \* Evaluate Prediciton Models against requirements \* Split
-dataset into training and test dataset \* Create model and reduced model
-**3. Cross Validation** \* Create Predictions using a test dataset \*
-Cross validation with test dataset \* Study Results
+1.  **Exploratory Data Analysis**
+    -   Explore: Attrition vs all variables
+    -   Quick identification of involved variables and visible trends
+    -   Clean and transform the information to a numeric dataset
+2.  **Model Creation**
+    -   Evaluate Prediciton Models against requirements
+    -   Split dataset into training and test dataset
+    -   Create model and reduced model
+3.  **Cross Validation**
+    -   Create Predictions using a test dataset
+    -   Cross validation with test dataset
+    -   Study Results
 
 In addtion, the report includes an analyis of Job Role specific trends
 and recommended actions
